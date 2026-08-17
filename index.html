@@ -1784,17 +1784,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterButtons = document.querySelectorAll(".portfolio-filters button");
     filterButtons.forEach(button => {
         button.addEventListener("click", () => {
-            // Trigger ripple effect
-            button.classList.remove("ripple");
-            void button.offsetWidth; // Trigger reflow to restart animation
-            button.classList.add("ripple");
-            
-            // Remove ripple class after animation completes
-            setTimeout(() => {
-                button.classList.remove("ripple");
-            }, 600);
-            
-            // Toggle active state
             filterButtons.forEach(item => item.classList.toggle("active", item === button));
         });
     });
