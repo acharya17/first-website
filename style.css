@@ -60,10 +60,8 @@ body {
 
 .navbar {
 
-    width: min(
-        var(--content-width),
-        calc(100% - (var(--page-padding) * 2))
-    );
+    width: min(var(--content-width),
+            calc(100% - (var(--page-padding) * 2)));
 
     min-height: 66px;
 
@@ -565,7 +563,7 @@ body {
 
 @media (min-width: 601px) and (max-width: 900px) {
     .hero {
-        padding-top: 28px;
+        padding-top: 106px;
     }
 
     .hero-container {
@@ -623,10 +621,25 @@ body {
         justify-content: center;
     }
 
-    .quote-mark { font-size: 32px; line-height: 18px; }
-    .hero-caption p { margin-top: 5px; font-size: 10px; line-height: 1.35; }
-    .stars { font-size: 16px; }
-    .hero-experience strong { margin-top: 4px; font-size: 17px; }
+    .quote-mark {
+        font-size: 32px;
+        line-height: 18px;
+    }
+
+    .hero-caption p {
+        margin-top: 5px;
+        font-size: 10px;
+        line-height: 1.35;
+    }
+
+    .stars {
+        font-size: 16px;
+    }
+
+    .hero-experience strong {
+        margin-top: 4px;
+        font-size: 17px;
+    }
 
     .hero-buttons {
         bottom: 120px;
@@ -682,10 +695,8 @@ body {
 }
 
 .hero-container {
-    width: min(
-        var(--content-width),
-        calc(100% - (var(--page-padding) * 2))
-    );
+    width: min(var(--content-width),
+            calc(100% - (var(--page-padding) * 2)));
 
     min-height: 600px;
 
@@ -1031,7 +1042,7 @@ body {
 @media (max-width: 600px) {
 
     .hero {
-        padding: 25px 0 0;
+        padding: 100px 0 0;
     }
 
     .hero-container {
@@ -1363,6 +1374,7 @@ body {
         font-size: 10px;
     }
 }
+
 /* =========================================================
    SERVICES SECTION
 ========================================================= */
@@ -1373,10 +1385,8 @@ body {
     padding: 54px 0 40px;
 
     background:
-        linear-gradient(
-            rgba(10, 10, 10, 0.45),
-            rgba(10, 10, 10, 0.45)
-        ),
+        linear-gradient(rgba(10, 10, 10, 0.45),
+            rgba(10, 10, 10, 0.45)),
         url("assets/images/ui-ux.png");
 
     background-size: cover;
@@ -1392,10 +1402,8 @@ body {
 ========================================================= */
 
 .services-container {
-    width: min(
-        var(--content-width),
-        calc(100% - (var(--page-padding) * 2))
-    );
+    width: min(var(--content-width),
+            calc(100% - (var(--page-padding) * 2)));
 
     margin: 0 auto;
 }
@@ -1470,8 +1478,13 @@ body {
     transition: background 0.25s ease, transform 0.25s ease;
 }
 
-.services-slider .slider-prev { left: 12px; }
-.services-slider .slider-next { right: 12px; }
+.services-slider .slider-prev {
+    left: 12px;
+}
+
+.services-slider .slider-next {
+    right: 12px;
+}
 
 .services-slider .slider-prev::before,
 .services-slider .slider-next::before {
@@ -1479,8 +1492,13 @@ body {
     line-height: 1;
 }
 
-.services-slider .slider-prev::before { content: "\2190"; }
-.services-slider .slider-next::before { content: "\2192"; }
+.services-slider .slider-prev::before {
+    content: "\2190";
+}
+
+.services-slider .slider-next::before {
+    content: "\2192";
+}
 
 .services-slider .slider-control:hover {
     background: #ff8138;
@@ -1574,8 +1592,7 @@ body {
     line-height: 1.2;
 
     border-bottom:
-        1px solid
-        rgba(255, 255, 255, 0.35);
+        1px solid rgba(255, 255, 255, 0.35);
 }
 
 
@@ -1823,10 +1840,17 @@ body {
     }
 
     .services-slider .slider-prev::before,
-    .services-slider .slider-next::before { font-size: 21px; }
+    .services-slider .slider-next::before {
+        font-size: 21px;
+    }
 
-    .services-slider .slider-prev { left: 8px; }
-    .services-slider .slider-next { right: 8px; }
+    .services-slider .slider-prev {
+        left: 8px;
+    }
+
+    .services-slider .slider-next {
+        right: 8px;
+    }
 
 
     /* Header */
@@ -1946,6 +1970,7 @@ body {
         font-size: 29px;
     }
 }
+
 /* =========================================================
    EXPERIENCE SECTION
 ========================================================= */
@@ -1964,10 +1989,8 @@ body {
 ========================================================= */
 
 .experience-container {
-    width: min(
-        var(--content-width),
-        calc(100% - (var(--page-padding) * 2))
-    );
+    width: min(var(--content-width),
+            calc(100% - (var(--page-padding) * 2)));
 
     margin: 0 auto;
 }
@@ -2013,9 +2036,7 @@ body {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr)
-        80px
-        minmax(0, 1fr);
+        minmax(0, 1fr) 80px minmax(0, 1fr);
 
     align-items: start;
 
@@ -2081,8 +2102,7 @@ body {
    DOTTED VERTICAL LINE
 ========================================================= */
 
-.experience-item:not(:last-child)
-.experience-line::after {
+.experience-item:not(:last-child) .experience-line::after {
 
     content: "";
 
@@ -2203,7 +2223,7 @@ body {
    ROW SPACING
 ========================================================= */
 
-.experience-item + .experience-item {
+.experience-item+.experience-item {
     margin-top: 18px;
 }
 
@@ -2220,9 +2240,7 @@ body {
 
     .experience-item {
         grid-template-columns:
-            minmax(0, 1fr)
-            60px
-            minmax(0, 1fr);
+            minmax(0, 1fr) 60px minmax(0, 1fr);
     }
 
     .experience-line {
@@ -2379,7 +2397,7 @@ body {
        GAP BETWEEN EXPERIENCES
     ----------------------------------------- */
 
-    .experience-item + .experience-item {
+    .experience-item+.experience-item {
 
         margin-top: 28px;
 
@@ -2435,13 +2453,14 @@ body {
         line-height: 1.45;
     }
 
-    .experience-item + .experience-item {
+    .experience-item+.experience-item {
 
         margin-top: 24px;
 
         padding-top: 20px;
     }
 }
+
 /* ========================================
    WHY HIRE ME SECTION
 ======================================== */
@@ -2876,10 +2895,7 @@ body {
     display: grid;
 
     grid-template-columns:
-        2.4fr
-        0.8fr
-        1fr
-        1.25fr;
+        2.4fr 0.8fr 1fr 1.25fr;
 
     gap: 40px;
 
@@ -2970,10 +2986,17 @@ body {
 
     color: #ffffff;
 
-    font-size: 18px;
-
     text-decoration: none;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.25s ease;
 }
+
+.footer-socials a:hover {
+    color: #ff8138;
+    transform: scale(1.18);
+}
+
+
+
 
 
 /* ========================================
@@ -3003,7 +3026,7 @@ body {
 .footer-column a {
     color: #ffffff;
 
-    font-size: 14   px;
+    font-size: 14 px;
 
     text-decoration: none;
 }
@@ -3200,18 +3223,31 @@ body {
 
     .footer-newsletter {
         grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
+    .newsletter-form {
+        margin: 0 auto;
+    }
 
     .footer-bottom {
         flex-direction: column;
 
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
 
         gap: 12px;
     }
 
+    .footer-bottom div {
+        justify-content: center;
+    }
+
 }
+
 
 /* ========================================
    PORTFOLIO SECTION
@@ -3235,7 +3271,7 @@ body {
     max-width: 1200px;
 
     margin: 0 auto;
-    
+
     overflow: hidden;
 }
 
@@ -3707,10 +3743,8 @@ body {
     padding: 55px 0 65px;
 
     background-image:
-        linear-gradient(
-            rgba(10, 10, 10, 0.35),
-            rgba(10, 10, 10, 0.35)
-        ),
+        linear-gradient(rgba(10, 10, 10, 0.35),
+            rgba(10, 10, 10, 0.35)),
         url("assets/images/testibg.png");
 
     background-size: cover;
@@ -3727,13 +3761,11 @@ body {
 ======================================== */
 
 .testimonials-container {
-    width: min(
-        var(--content-width),
-        calc(100% - (var(--page-padding) * 2))
-    );
+    width: min(var(--content-width),
+            calc(100% - (var(--page-padding) * 2)));
 
     margin: 0 auto;
-    
+
     overflow: hidden;
 }
 
@@ -3814,11 +3846,9 @@ body {
     border-radius: 14px;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgba(255, 255, 255, 0.16),
-            rgba(255, 255, 255, 0.07)
-        );
+            rgba(255, 255, 255, 0.07));
 
     backdrop-filter: blur(8px);
 
@@ -4964,7 +4994,7 @@ body {
         height: 250px;
     }
 
-.blog-card h3 {
+    .blog-card h3 {
         font-size: 18px;
     }
 
@@ -4972,6 +5002,7 @@ body {
 
 /* Keep the mobile navigation completely off-canvas until it is opened. */
 @media (min-width: 901px) {
+
     .mobile-drawer,
     .drawer-overlay {
         display: none !important;
@@ -4980,6 +5011,7 @@ body {
 
 /* Prevent fixed-size decorative elements from widening tablet/mobile pages. */
 @media (max-width: 900px) {
+
     html,
     body {
         width: 100%;
@@ -4987,9 +5019,9 @@ body {
         overflow-x: clip;
     }
 
-    body > header,
-    body > section,
-    body > footer {
+    body>header,
+    body>section,
+    body>footer {
         width: 100%;
         max-width: 100%;
     }
@@ -5076,4 +5108,32 @@ body {
         right: calc(50% - 64px);
     }
 
+}
+
+/* =========================================================
+   RIPPLE EFFECT
+========================================================= */
+.ripple-target {
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.ripple-span {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-anim 0.6s cubic-bezier(0.1, 0.8, 0.3, 1);
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.ripple-span.dark-ripple {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+@keyframes ripple-anim {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
 }
