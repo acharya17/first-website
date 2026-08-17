@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+        <link rel="stylesheet" href="style.css">
+
+<style>
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body { overflow-x: hidden; }
+section[id] { scroll-margin-top: 100px; }
+
+.header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 12px 0;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    transition: box-shadow .25s ease, background .25s ease;
+}
+.header.scrolled {
+    background: rgba(255,255,255,.86);
+    box-shadow: 0 8px 28px rgba(20,25,35,.08);
+}
+.navbar {
+    width: min(var(--content-width,1200px), calc(100% - (var(--page-padding,24px) * 2)));
+    min-height: 64px;
+    margin: 0 auto;
+    padding: 8px 10px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    background: #252525;
+    border-radius: 50px;
+    box-sizing: border-box;
+}
+.nav-left,.nav-right { display:flex; align-items:center; gap:3px; }
+.nav-left { justify-content:flex-start; }
+.nav-right { justify-content:flex-end; }
+
+.nav-left a,.nav-right a {
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 20px;
+    border-radius:50px;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    white-space:nowrap;
+    transition:background .25s ease,color .25s ease,border-color .25s ease;
+    box-sizing:border-box;
+}
+.nav-left a:hover,.nav-right a:hover { background:rgba(255,255,255,.10); }
+.nav-left a.active,.nav-right a.active { background:#fd853a; color:#fff; }
+.nav-right a.contact-link { border:1px solid rgba(255,255,255,.72); }
+.nav-right a.contact-link.active { border-color:#fd853a; }
+
+.logo {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 24px;
+    color:#fff;
+    text-decoration:none;
+    font-size:26px;
+    font-weight:700;
+    line-height:1;
+    white-space:nowrap;
+}
+
+.menu-btn {
+    display:none;
+    width:44px;
+    height:44px;
+    padding:0;
+    border:0;
+    border-radius:50%;
+    background:#fd853a;
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:5px;
+}
+.menu-btn span { width:19px; height:2px; border-radius:2px; background:#fff; }
+
+.drawer-overlay {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.38);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .25s ease,visibility .25s ease;
+    z-index:1090;
+}
+.drawer-overlay.active { opacity:1; visibility:visible; }
+
+.mobile-drawer {
+    position:fixed;
+    top:0;
+    right:0;
+    width:min(340px,86vw);
+    height:100dvh;
+    padding:82px 24px 30px;
+    background:#252525;
+    transform:translateX(100%);
+    transition:transform .3s ease;
+    z-index:1100;
+    box-sizing:border-box;
+    overflow-y:auto;
+}
+.mobile-drawer.active { transform:translateX(0); }
+
+.drawer-close {
+    position:absolute;
+    top:18px;
+    right:18px;
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.45);
+    border-radius:50%;
+    background:transparent;
+    color:#fff;
+    font-size:25px;
+    line-height:1;
+    cursor:pointer;
+}
+.drawer-links { display:flex; flex-direction:column; gap:8px; }
+.drawer-links a {
+    display:flex;
+    align-items:center;
+    min-height:52px;
+    padding:0 18px;
+    border-radius:14px;
+    color:#fff;
+    text-decoration:none;
+    font-size:16px;
+}
+.drawer-links a:hover,.drawer-links a.active { background:#fd853a; }
+
+@media (max-width:900px) {
+    .header { padding:10px 0; }
+    .navbar {
+        min-height:58px;
+        grid-template-columns:1fr auto;
+        padding:7px 10px;
+    }
+    .nav-left,.nav-right { display:none; }
+    .logo { justify-content:flex-start; padding:0 14px; font-size:23px; }
+    .menu-btn { display:flex; }
+}
+@media (max-width:480px) {
+    .navbar { width:calc(100% - 20px); }
+    .logo { font-size:21px; }
+    html { scroll-padding-top:82px; }
+    section[id] { scroll-margin-top:82px; }
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+
+    <header class="header">
+
+     <nav class="navbar">
+
+        <!-- Left Menu -->
+        <div class="nav-left">
+            <a href="#home" class="nav-link active">Home</a>
+            
+            <a href="#service" class="nav-link">Service</a>
+            <a href="#resume" class="nav-link">Resume</a>
+        </div>
+
+
+        <!-- Logo -->
+        <a href="#" class="logo">
+            JCREA
+        </a>
+
+
+        <!-- Right Menu -->
+        <div class="nav-right">
+            
+            <a href="#about" class="nav-link">About</a>
+            <a href="#project" class="nav-link">Project</a>
+            <a href="#contact" class="nav-link contact-link">Contact</a>
+        </div>
+
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-btn" type="button" aria-label="Open navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </nav>
+
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="drawer-overlay"></div>
+
+    <div class="mobile-drawer">
+
+        <button class="drawer-close" aria-label="Close navigation">
+            ×
+        </button>
+
+        <div class="drawer-links">
+            <a href="#home">Home</a>
+        
+            <a href="#service">Service</a>
+            <a href="#resume">Resume</a>
+                <a href="#about">About</a>
+            <a href="#project">Project</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+    </div>
+
+</header>
+
+<!-- HERO -->
+    
+<section class="hero" id="home">
+
+    <div class="hero-container">
+
+        <!-- Greeting -->
+        <div class="hero-greeting">
+            Hello!
+        </div>
+
+        <!-- Main Heading -->
+        <div class="hero-heading">
+
+            <h1>
+                I'm <span>Jenny,</span>
+            </h1>
+
+            <h2>
+                Product Designer
+            </h2>
+
+        </div>
+
+        <!-- Left Testimonial -->
+        <div class="hero-caption">
+
+            <div class="quote-mark">
+                “
+            </div>
+
+            <p>
+                Jenny's Exceptional product design
+                ensures our website's success.
+                Highly Recommended
+            </p>
+
+        </div>
+
+        <!-- Right Experience -->
+        <div class="hero-experience">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <strong>
+                10 Years
+            </strong>
+
+            <span>
+                Experience
+            </span>
+
+        </div>
+
+        <!-- Person Image -->
+        <div class="hero-person">
+
+            <div class="hero-circle"></div>
+
+            <img
+                src="assets/images/person.png"
+                alt="Jenny - Product Designer"
+            >
+
+        </div>
+
+        <!-- Hero Buttons -->
+        <div class="hero-buttons">
+
+            <a href="#portfolio" class="portfolio-btn">
+                Portfolio ↗
+            </a>
+
+            <a href="#contact" class="hire-btn">
+                Hire me
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MY SERVICES -->
+<section class="services" id="service">
+
+    <div class="services-container">
+
+        <!-- ========================================
+             HEADER
+        ======================================== -->
+
+        <div class="services-header">
+
+            <h2>
+                My <span>Services</span>
+            </h2>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Duis lacus nunc, posuere in justo vulputate, bibendum sodales
+                lacus nunc.
+            </p>
+
+        </div>
+
+
+        <!-- ========================================
+             SLIDER
+        ======================================== -->
+
+        <div class="services-slider" data-slider="services">
+
+            <!-- LEFT ARROW -->
+
+            <!-- <button
+                class="slider-control slider-prev"
+                type="button"
+                aria-label="Previous services"
+            >
+                ←
+            </button> -->
+
+
+            <!-- CARDS VIEWPORT -->
+
+            <div class="services-viewport">
+
+                <div class="services-cards">
+
+
+                    <!-- ========================================
+                         CARD 1
+                    ======================================== -->
+
+                    <article class="service-card">
+
+                        <h3>
+                            UI/UX Design
+                        </h3>
+
+
+                        <div class="service-preview">
+
+                            <div class="preview-layer layer-1"></div>
+
+                            <div class="preview-layer layer-2"></div>
+
+                            <img
+                                src="assets/images/card.png"
+                                alt="UI UX Design"
+                            >
+
+                        </div>
+
+
+                        <a
+                            href="#"
+                            class="service-arrow"
+                            aria-label="View UI UX Design"
+                        >
+                            ↗
+                        </a>
+
+                    </article>
+
+
+                    <!-- ========================================
+                         CARD 2
+                    ======================================== -->
+
+                    <article class="service-card">
+
+                        <h3>
+                            Web Design
+                        </h3>
+
+
+                        <div class="service-preview">
+
+                            <div class="preview-layer layer-1"></div>
+
+                            <div class="preview-layer layer-2"></div>
+
+                            <img
+                                src="assets/images/card.png"
+                                alt="Web Design"
+                            >
+
+                        </div>
+
+
+                        <a
+                            href="#"
+                            class="service-arrow"
+                            aria-label="View Web Design"
+                        >
+                            ↗
+                        </a>
+
+                    </article>
+
+
+                    <!-- ========================================
+                         CARD 3
+                    ======================================== -->
+
+                    <article class="service-card">
+
+                        <h3>
+                            Landing Page
+                        </h3>
+
+
+                        <div class="service-preview">
+
+                            <div class="preview-layer layer-1"></div>
+
+                            <div class="preview-layer layer-2"></div>
+
+                            <img
+                                src="assets/images/card.png"
+                                alt="Landing Page"
+                            >
+
+                        </div>
+
+
+                        <a
+                            href="#"
+                            class="service-arrow"
+                            aria-label="View Landing Page"
+                        >
+                            ↗
+                        </a>
+
+                    </article>
+
+
+                    <!-- ========================================
+                         CARD 4
+                    ======================================== -->
+
+                    <article class="service-card">
+
+                        <h3>
+                            App Design
+                        </h3>
+
+
+                        <div class="service-preview">
+
+                            <div class="preview-layer layer-1"></div>
+
+                            <div class="preview-layer layer-2"></div>
+
+                            <img
+                                src="assets/images/card.png"
+                                alt="App Design"
+                            >
+
+                        </div>
+
+
+                        <a
+                            href="#"
+                            class="service-arrow"
+                            aria-label="View App Design"
+                        >
+                            ↗
+                        </a>
+
+                    </article>
+
+
+                    <!-- ========================================
+                         CARD 5
+                    ======================================== -->
+
+                    <article class="service-card">
+
+                        <h3>
+                            Product Design
+                        </h3>
+
+
+                        <div class="service-preview">
+
+                            <div class="preview-layer layer-1"></div>
+
+                            <div class="preview-layer layer-2"></div>
+
+                            <img
+                                src="assets/images/card.png"
+                                alt="Product Design"
+                            >
+
+                        </div>
+
+
+                        <a
+                            href="#"
+                            class="service-arrow"
+                            aria-label="View Product Design"
+                        >
+                            ↗
+                        </a>
+
+                    </article>
+
+
+                    <!-- ========================================
+                         CARD 6
+                    ======================================== -->
+
+                    <article class="service-card">
+
+                        <h3>
+                            Brand Design
+                        </h3>
+
+
+                        <div class="service-preview">
+
+                            <div class="preview-layer layer-1"></div>
+
+                            <div class="preview-layer layer-2"></div>
+
+                            <img
+                                src="assets/images/card.png"
+                                alt="Brand Design"
+                            >
+
+                        </div>
+
+
+                        <a
+                            href="#"
+                            class="service-arrow"
+                            aria-label="View Brand Design"
+                        >
+                            ↗
+                        </a>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT ARROW -->
+
+            <!-- <button
+                class="slider-control slider-next"
+                type="button"
+                aria-label="Next services"
+            >
+                →
+            </button> -->
+
+        </div>
+
+
+        <!-- ========================================
+             PAGINATION
+        ======================================== -->
+
+        <div
+            class="service-dots"
+            aria-label="Service pagination"
+        ></div>
+
+
+    </div>
+
+</section>
+
+
+<!-- WORK EXPERIENCE SECTION -->
+
+<section class="experience" id="resume">
+
+    <div class="experience-container">
+
+        <!-- Heading -->
+        <h2 class="experience-title">
+            My <span>Work Experience</span>
+        </h2>
+
+
+        <!-- Experience Timeline -->
+        <div class="experience-timeline">
+
+
+            <!-- EXPERIENCE 01 -->
+
+            <div class="experience-item">
+
+                <div class="experience-left">
+
+                    <h3>Cognizant, Mumbai</h3>
+
+                    <p class="experience-date">
+                        Sep 2016 - July 2020
+                    </p>
+
+                </div>
+
+
+                <div class="experience-line">
+
+                    <span class="experience-dot orange"></span>
+
+                </div>
+
+
+                <div class="experience-right">
+
+                    <h3>Experience Designer</h3>
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Duis lacus nunc, posuere in
+                        justo vulputate, bibendum sodales.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPERIENCE 02 -->
+
+            <div class="experience-item">
+
+                <div class="experience-left">
+
+                    <h3>Sugee Pvt limited, Mumbai</h3>
+
+                    <p class="experience-date">
+                        Sep 2020 - July 2023
+                    </p>
+
+                </div>
+
+
+                <div class="experience-line">
+
+                    <span class="experience-dot dark"></span>
+
+                </div>
+
+
+                <div class="experience-right">
+
+                    <h3>UI/UX Designer</h3>
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Duis lacus nunc, posuere in
+                        justo vulputate, bibendum sodales.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPERIENCE 03 -->
+
+            <div class="experience-item">
+
+                <div class="experience-left">
+
+                    <h3>Cinetstox, Mumbai</h3>
+
+                    <p class="experience-date">
+                        Sep 2023
+                    </p>
+
+                </div>
+
+
+                <div class="experience-line">
+
+                    <span class="experience-dot orange"></span>
+
+                </div>
+
+
+                <div class="experience-right">
+
+                    <h3>Lead UX Designer</h3>
+
+                </div>
+
+            </div>
+
+              <!-- EXPERIENCE 02 -->
+
+            <div class="experience-item">
+
+                <div class="experience-left">
+
+                    <h3>Sugee Pvt limited, Mumbai</h3>
+
+                    <p class="experience-date">
+                        Sep 2020 - July 2023
+                    </p>
+
+                </div>
+
+
+                <div class="experience-line">
+
+                    <span class="experience-dot dark"></span>
+
+                </div>
+
+
+                <div class="experience-right">
+
+                    <h3>UI/UX Designer</h3>
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Duis lacus nunc, posuere in
+                        justo vulputate, bibendum sodales.
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!--  WHY HIRE ME SECTION -->
+
+<section class="hire-section" id="about">
+
+    <div class="hire-container">
+
+        <!-- LEFT IMAGE -->
+        <div class="hire-image-area">
+
+            <div class="hire-image-bg"></div>
+
+            <img
+                src="assets/images/mask.png"
+                alt="Why Hire Me"
+                class="hire-image"
+            >
+
+        </div>
+
+
+        <!-- RIGHT CONTENT -->
+        <div class="hire-content">
+
+            <h2>
+                Why <span>Hire me</span>?
+            </h2>
+
+            <p class="hire-description">
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Duis lacus nunc, posuere in
+                justo vulputate, bibendum sodales.
+            </p>
+
+
+            <!-- STATS -->
+            <div class="hire-stats">
+
+                <div class="hire-stat">
+
+                    <h3>450+</h3>
+
+                    <p>
+                        Project Completed
+                    </p>
+
+                </div>
+
+
+                <div class="hire-stat">
+
+                    <h3>450+</h3>
+
+                    <p>
+                        Project Completed
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTON -->
+            <a href="#contact" class="hire-button">
+                Hire me
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PORTFOLIO SECTION -->
+
+<section class="portfolio" id="project">
+
+    <div class="portfolio-container">
+
+        <!-- ==================================
+             HEADER
+        =================================== -->
+
+        <div class="portfolio-header">
+
+            <h2>
+                Lets have a look at<br>
+                my <span>Portfolio</span>
+            </h2>
+
+            <a href="#" class="portfolio-see-all">
+                See All
+            </a>
+
+        </div>
+
+
+        <!-- ==================================
+             PROJECT CARDS
+        =================================== -->
+
+        <div class="portfolio-slider" data-slider="portfolio">
+
+        <div class="portfolio-projects">
+
+
+            <!-- PROJECT 01 -->
+
+            <article class="portfolio-card">
+
+                <img
+                    src="assets/images/port.png"
+                    alt="Lirante Food Delivery Solution"
+                >
+
+                <a href="#" class="portfolio-card-arrow">
+                    ↗
+                </a>
+
+                <div class="portfolio-card-overlay">
+
+                    <h3>Lirante</h3>
+
+                </div>
+
+            </article>
+
+
+            <!-- PROJECT 02 -->
+
+            <article class="portfolio-card">
+
+                <img
+                    src="assets/images/port.png"
+                    alt="Lirante Food Delivery Solution"
+                >
+
+                <a href="#" class="portfolio-card-arrow">
+                    ↗
+                </a>
+
+                <div class="portfolio-card-overlay">
+
+                    <h3>Lirante</h3>
+
+                </div>
+
+            </article>
+
+            <article class="portfolio-card">
+
+                <img
+                    src="assets/images/port.png"
+                    alt="Astera Travel Booking"
+                >
+
+                <a href="#" class="portfolio-card-arrow">
+                    ↗
+                </a>
+
+                <div class="portfolio-card-overlay">
+
+                    <h3>Astera</h3>
+
+                </div>
+
+            </article>
+
+            <article class="portfolio-card">
+
+                <img
+                    src="assets/images/port.png"
+                    alt="Nova Finance Dashboard"
+                >
+
+                <a href="#" class="portfolio-card-arrow">
+                    ↗
+                </a>
+
+                <div class="portfolio-card-overlay">
+
+                    <h3>Nova</h3>
+
+                </div>
+
+            </article>
+
+            <article class="portfolio-card">
+
+                <img
+                    src="assets/images/port.png"
+                    alt="Pixel Craft Studio"
+                >
+
+                <a href="#" class="portfolio-card-arrow">
+                    ↗
+                </a>
+
+                <div class="portfolio-card-overlay">
+
+                    <h3>Pixel</h3>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        </div>
+
+        <!-- ==================================
+             SLIDER DOTS
+        =================================== -->
+
+        <div class="portfolio-dots" aria-label="Portfolio pagination"></div>
+
+
+        <!-- ==================================
+             CATEGORY FILTERS
+        =================================== -->
+
+        <div class="portfolio-filters" aria-label="Portfolio filters">
+
+            <button class="active" type="button">
+                Landing Page
+            </button>
+
+            <button type="button">
+                Product Design
+            </button>
+
+            <button type="button">
+                Animation
+            </button>
+
+            <button type="button">
+                Glassmorphism
+            </button>
+
+            <button type="button">
+                Cards
+            </button>
+
+        </div>
+
+
+        <!-- ==================================
+             PROJECT INFORMATION
+        =================================== -->
+
+        <div class="portfolio-info">
+
+            <div class="portfolio-title">
+
+                <h3>
+                    Lirante - Food Delivery Solution
+                </h3>
+
+                <a href="#" class="portfolio-info-arrow">
+                    ↗
+                </a>
+
+            </div>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Sed congue interdum ligula a dignissim. Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit. Sed lobortis orci
+                elementum egestas lobortis.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+
+<section class="testimonials">
+
+    <div class="testimonials-container">
+
+        <!-- HEADING -->
+
+        <div class="testimonials-header">
+
+            <h2>
+                Testimonials That<br>
+                Speak to <span>My Results</span>
+            </h2>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Sed congue interdum ligula a dignissim. Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit. Sed lobortis orci
+                elementum egestas lobortis.
+            </p>
+
+        </div>
+
+
+        <!-- TESTIMONIAL CARDS -->
+
+        <div class="testimonial-slider" data-slider="testimonials">
+
+
+            <!-- CARD 01 -->
+
+            <article class="testimonial-card">
+
+                <div class="testimonial-top">
+
+                    <div class="testimonial-user">
+
+                        <img
+                            src="assets/images/jayesh.png"
+                            alt="Jayesh Patil"
+                        >
+
+                        <div>
+                            <h3>Jayesh Patil</h3>
+                            <span>CEO, Lirante</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="testimonial-rating">
+                    <span>★★★★★</span>
+                    <strong>5.0</strong>
+                </div>
+
+
+                <p class="testimonial-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Sed congue interdum ligula a dignissim. Lorem ipsum dolor
+                    sit amet, consectetur adipiscing elit. Sed lobortis orci
+                    elementum egestas lobortis.
+                </p>
+
+
+                <div class="testimonial-quote">
+                    ”
+                </div>
+
+            </article>
+
+
+            <!-- CARD 02 -->
+
+            <article class="testimonial-card">
+
+                <div class="testimonial-top">
+
+                    <div class="testimonial-user">
+
+                        <img
+                            src="assets/images/jayesh.png"
+                            alt="Jayesh Patil"
+                        >
+
+                        <div>
+                            <h3>Jayesh Patil</h3>
+                            <span>CEO, Lirante</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="testimonial-rating">
+                    <span>★★★★★</span>
+                    <strong>5.0</strong>
+                </div>
+
+
+                <p class="testimonial-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Sed congue interdum ligula a dignissim. Lorem ipsum dolor
+                    sit amet, consectetur adipiscing elit. Sed lobortis orci
+                    elementum egestas lobortis.
+                </p>
+
+
+                <div class="testimonial-quote">
+                    ”
+                </div>
+
+            </article>
+
+
+            <!-- CARD 03 -->
+
+            <article class="testimonial-card">
+
+                <div class="testimonial-top">
+
+                    <div class="testimonial-user">
+
+                        <img
+                            src="assets/images/jayesh.png"
+                            alt="Jayesh Patil"
+                        >
+
+                        <div>
+                            <h3>Jayesh Patil</h3>
+                            <span>CEO, Lirante</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="testimonial-rating">
+                    <span>★★★★★</span>
+                    <strong>5.0</strong>
+                </div>
+
+
+                <p class="testimonial-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Sed congue interdum ligula a dignissim. Lorem ipsum dolor
+                    sit amet, consectetur adipiscing elit. Sed lobortis orci
+                    elementum egestas lobortis.
+                </p>
+
+
+                <div class="testimonial-quote">
+                    ”
+                </div>
+
+            </article>
+
+            <article class="testimonial-card">
+
+                <div class="testimonial-top">
+
+                    <div class="testimonial-user">
+
+                        <img
+                            src="assets/images/jayesh.png"
+                            alt="Jayesh Patil"
+                        >
+
+                        <div>
+                            <h3>Jayesh Patil</h3>
+                            <span>CEO, Lirante</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="testimonial-rating">
+                    <span>★★★★★</span>
+                    <strong>5.0</strong>
+                </div>
+
+
+                <p class="testimonial-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Sed congue interdum ligula a dignissim. Lorem ipsum dolor
+                    sit amet, consectetur adipiscing elit. Sed lobortis orci
+                    elementum egestas lobortis.
+                </p>
+
+
+                <div class="testimonial-quote">
+                    ”
+                </div>
+
+            </article><article class="testimonial-card">
+
+                <div class="testimonial-top">
+
+                    <div class="testimonial-user">
+
+                        <img
+                            src="assets/images/jayesh.png"
+                            alt="Jayesh Patil"
+                        >
+
+                        <div>
+                            <h3>Jayesh Patil</h3>
+                            <span>CEO, Lirante</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="testimonial-rating">
+                    <span>★★★★★</span>
+                    <strong>5.0</strong>
+                </div>
+
+
+                <p class="testimonial-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Sed congue interdum ligula a dignissim. Lorem ipsum dolor
+                    sit amet, consectetur adipiscing elit. Sed lobortis orci
+                    elementum egestas lobortis.
+                </p>
+
+
+                <div class="testimonial-quote">
+                    ”
+                </div>
+
+            </article>
+
+        </div>
+
+        <div class="testimonial-dots" aria-label="Testimonial pagination"></div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT / CTA SECTION -->
+
+<section class="contact-cta" id="contact">
+
+    <div class="contact-cta-container">
+
+        <!-- HEADING -->
+
+        <h2 class="contact-cta-title">
+            Have an Awesome Project<br>
+            Idea? <span>Let’s Discuss</span>
+        </h2>
+
+
+        <!-- EMAIL FORM -->
+
+        <form class="contact-form">
+
+            <div class="email-icon">
+                ✉
+            </div>
+
+            <input
+                type="email"
+                placeholder="Enter Email Address"
+                required
+            >
+
+            <button type="submit">
+                Send
+            </button>
+
+        </form>
+
+
+        <!-- FEATURES -->
+
+        <div class="contact-features">
+
+            <div class="contact-feature">
+                <span>★</span>
+                <p>4.9/5 Average Ratings</p>
+            </div>
+
+            <div class="contact-feature">
+                <span>♛</span>
+                <p>25+ Winning Awards</p>
+            </div>
+
+            <div class="contact-feature">
+                <span>◆</span>
+                <p>Certified Product Designer</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================
+         DIAGONAL SKILL TICKER
+    ======================================== -->
+
+    <div class="skill-ticker">
+
+        <div class="ticker-track">
+
+            <div class="ticker-group">
+                <span>Dashboard</span><b>✦</b>
+                <span>Wireframe</span><b>✦</b>
+                <span>User Research</span><b>✦</b>
+                <span>UX Design</span><b>✦</b>
+                <span>App Design</span><b>✦</b>
+            </div>
+
+            <div class="ticker-group" aria-hidden="true">
+                <span>Dashboard</span><b>✦</b>
+                <span>Wireframe</span><b>✦</b>
+                <span>User Research</span><b>✦</b>
+                <span>UX Design</span><b>✦</b>
+                <span>App Design</span><b>✦</b>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BLOG SECTION -->
+
+<section class="blog" id="blog">
+
+    <div class="blog-container">
+
+        <!-- HEADER -->
+
+        <div class="blog-header">
+
+            <h2>
+                From my<br>
+                blog post
+            </h2>
+
+            <a href="#" class="blog-see-all">
+                See All
+            </a>
+
+        </div>
+
+
+        <!-- BLOG CARDS -->
+
+        <div class="blog-grid">
+
+
+            <!-- BLOG 01 -->
+
+            <article class="blog-card">
+
+                <div class="blog-image">
+
+                    <img
+                        src="assets/images/blog1.png"
+                        alt="Design Unraveled"
+                    >
+
+                    <a href="#" class="blog-arrow">
+                        ↗
+                    </a>
+
+                </div>
+
+
+                <div class="blog-category">
+                    UI/ UX Design
+                </div>
+
+
+                <div class="blog-meta">
+
+                    <span>
+                        Jayesh Patil
+                    </span>
+
+                    <span>
+                        10 Nov, 2023
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Design Unraveled: Behind
+                    the Scenes of UI/UX Magic
+                </h3>
+
+            </article>
+
+
+            <!-- BLOG 02 -->
+
+            <article class="blog-card">
+
+                <div class="blog-image">
+
+                    <img
+                        src="assets/images/blog2.png"
+                        alt="Sugee Loan Management"
+                    >
+
+                    <a href="#" class="blog-arrow">
+                        ↗
+                    </a>
+
+                </div>
+
+
+                <div class="blog-category">
+                    App Design
+                </div>
+
+
+                <div class="blog-meta">
+
+                    <span>
+                        Jayesh Patil
+                    </span>
+
+                    <span>
+                        09 Oct, 2023
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Sugee: Loan Management
+                    System for Rural Sector.
+                </h3>
+
+            </article>
+
+
+            <!-- BLOG 03 -->
+
+            <article class="blog-card">
+
+                <div class="blog-image">
+
+                    <img
+                        src="assets/images/blog3.png"
+                        alt="Cinetrade Digital Media"
+                    >
+
+                    <a href="#" class="blog-arrow">
+                        ↗
+                    </a>
+
+                </div>
+
+
+                <div class="blog-category">
+                    App Design
+                </div>
+
+
+                <div class="blog-meta">
+
+                    <span>
+                        Jayesh Patil
+                    </span>
+
+                    <span>
+                        13 Aug, 2023
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Cinetrade: Innovative way
+                    to invest in Digital Media
+                </h3>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!--FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- ==================================
+             FOOTER TOP
+        =================================== -->
+
+        <div class="footer-top">
+
+            <h2>
+                Lets Connect there
+            </h2>
+
+            <a href="#contact" class="footer-hire-btn">
+                Hire me ↗
+            </a>
+
+        </div>
+
+
+        <!-- DIVIDER -->
+
+        <div class="footer-divider"></div>
+
+
+        <!-- ==================================
+             FOOTER MAIN
+        =================================== -->
+
+        <div class="footer-main">
+
+
+            <!-- BRAND -->
+
+            <div class="footer-brand">
+
+                <a href="#" class="footer-logo">
+                    <span class="footer-logo-icon">JC</span>
+                    JCREA
+                </a>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Sed congue interdum ligula
+                    a dignissim. Lorem ipsum dolor sit amet,
+                    consectetur adipiscing elit. Sed lobortis
+                    orci elementum egestas lobortis.
+                </p>
+
+
+                <!-- SOCIAL ICONS -->
+
+                <div class="footer-socials">
+
+                    <a href="#">f</a>
+                    <a href="#">▶</a>
+                    <a href="#">◎</a>
+                    <a href="#">◎</a>
+                    <a href="#">♥</a>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="footer-column">
+
+                <h3>Navigation</h3>
+
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#service">Service</a>
+                <a href="#resume">Resume</a>
+                <a href="#project">Project</a>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="footer-column">
+
+                <h3>Contact</h3>
+
+                <a href="tel:+917738443636">
+                    +91 7738443636
+                </a>
+
+                <a href="mailto:jaycrea36@gmail.com">
+                    Jaycrea36@gmail.com
+                </a>
+
+                <a href="#">
+                    Portfolio-jcrea.com
+                </a>
+
+            </div>
+
+
+            <!-- NEWSLETTER -->
+
+            <div class="footer-newsletter">
+
+                <h3>
+                    Get the latest information
+                </h3>
+
+                <form class="newsletter-form">
+
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                    >
+
+                    <button type="submit">
+                        ➜
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- DIVIDER -->
+
+        <div class="footer-divider"></div>
+
+
+        <!-- ==================================
+             FOOTER BOTTOM
+        =================================== -->
+
+        <div class="footer-bottom">
+
+            <p>
+                Copyright© 2023 Jayesh. All Rights Reserved.
+            </p>
+
+            <div>
+
+                <a href="#">
+                    User Terms & Conditions
+                </a>
+
+                <span>|</span>
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector(".header");
+    const menuBtn = document.querySelector(".menu-btn");
+    const drawer = document.querySelector(".mobile-drawer");
+    const drawerClose = document.querySelector(".drawer-close");
+    const drawerOverlay = document.querySelector(".drawer-overlay");
+    const navLinks = [...document.querySelectorAll(".nav-link")];
+    const drawerLinks = [...document.querySelectorAll(".drawer-links a")];
+
+    const sectionIds = ["home", "about", "service", "resume", "project", "contact"];
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    function setActive(id) {
+        const href = "#" + id;
+        navLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === href));
+        drawerLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === href));
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length) setActive(visible[0].target.id);
+    }, {
+        rootMargin: "-18% 0px -55% 0px",
+        threshold: [0.05, 0.2, 0.4, 0.6]
+    });
+
+    sections.forEach(section => observer.observe(section));
+
+    function updateHeader() {
+        header.classList.toggle("scrolled", window.scrollY > 30);
+    }
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive:true });
+
+    function openDrawer() {
+        drawer.classList.add("active");
+        drawerOverlay.classList.add("active");
+        menuBtn.setAttribute("aria-expanded","true");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeDrawer() {
+        drawer.classList.remove("active");
+        drawerOverlay.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded","false");
+        document.body.style.overflow = "";
+    }
+
+    function toggleDrawer() {
+        drawer.classList.contains("active") ? closeDrawer() : openDrawer();
+    }
+
+    menuBtn.addEventListener("click", toggleDrawer);
+    drawerClose.addEventListener("click", closeDrawer);
+    drawerOverlay.addEventListener("click", closeDrawer);
+    drawerLinks.forEach(link => link.addEventListener("click", closeDrawer));
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 900) closeDrawer();
+    });
+
+    const filterButtons = document.querySelectorAll(".portfolio-filters button");
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            filterButtons.forEach(item => item.classList.toggle("active", item === button));
+        });
+    });
+
+    function setupSlider(slider, type, autoplayDelay = 0) {
+        const track = slider.querySelector(".services-cards, .portfolio-projects") || slider;
+        if (!track) return;
+
+        const originalCards = [...track.children];
+        if (!originalCards.length) return;
+
+        const dotsContainer = slider.parentElement.querySelector(".service-dots, .portfolio-dots, .testimonial-dots");
+        const originalCardCount = originalCards.length;
+        const isLooping = type === "services" || type === "testimonials";
+        let currentIndex = 0;
+        const previousButton = slider.querySelector(".slider-prev");
+        const nextButton = slider.querySelector(".slider-next");
+
+        const getVisibleCount = () => {
+            if (type === "services") {
+                if (window.innerWidth <= 600) return 1;
+                if (window.innerWidth <= 900) return 2;
+                return 3;
+            }
+
+            if (type === "testimonials") {
+                if (window.innerWidth <= 600) return 1;
+                if (window.innerWidth <= 900) return 2;
+                return 3;
+            }
+
+            return type === "portfolio" ? 2 : 1;
+        };
+
+        const removeClones = () => {
+            track.querySelectorAll("[data-slider-clone]").forEach(clone => clone.remove());
+        };
+
+        const addLoopClones = () => {
+            if (!isLooping) return;
+
+            const visibleCount = getVisibleCount();
+            originalCards.slice(0, visibleCount).forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute("data-slider-clone", "true");
+                clone.setAttribute("aria-hidden", "true");
+                clone.querySelectorAll("a").forEach(link => link.tabIndex = -1);
+                track.appendChild(clone);
+            });
+        };
+
+        addLoopClones();
+
+        const getGap = () => {
+            const style = window.getComputedStyle(track);
+            return parseFloat(style.columnGap || style.gap || 0) || 0;
+        };
+
+        const getStep = () => {
+            const firstCard = track.children[0];
+            if (!firstCard) return 0;
+            return firstCard.getBoundingClientRect().width + getGap();
+        };
+
+        const updateDots = () => {
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = "";
+            const visibleCount = getVisibleCount();
+            const totalSlides = Math.ceil(originalCardCount / visibleCount);
+            
+            for (let i = 0; i < totalSlides; i++) {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.setAttribute("aria-label", `Go to slide ${i + 1}`);
+                const activeIndex = Math.floor((currentIndex % originalCardCount) / visibleCount);
+                button.classList.toggle("active", i === activeIndex);
+                button.addEventListener("click", () => {
+                    currentIndex = i * visibleCount;
+                    render();
+                });
+                dotsContainer.appendChild(button);
+            }
+        };
+
+        const render = () => {
+            const visibleCount = getVisibleCount();
+            const maxIndex = isLooping
+                ? originalCardCount
+                : Math.max(0, originalCardCount - visibleCount);
+            currentIndex = Math.min(currentIndex, maxIndex);
+            track.style.transform = `translateX(-${currentIndex * getStep()}px)`;
+            updateDots();
+        };
+
+        render();
+
+        const moveBy = direction => {
+            const visibleCount = getVisibleCount();
+
+            if (type === "services" && direction < 0 && currentIndex === 0) {
+                track.style.transition = "none";
+                currentIndex = originalCardCount;
+                track.style.transform = `translateX(-${currentIndex * getStep()}px)`;
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        track.style.transition = "transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
+                        currentIndex = originalCardCount - visibleCount;
+                        render();
+                    });
+                });
+                return;
+            }
+
+            if (type === "services" && direction > 0 && currentIndex >= originalCardCount) {
+                track.style.transition = "none";
+                currentIndex = 0;
+                track.style.transform = "translateX(0)";
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        track.style.transition = "transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
+                        currentIndex = visibleCount;
+                        render();
+                    });
+                });
+                return;
+            }
+
+            const maxIndex = type === "services"
+                ? originalCardCount
+                : Math.max(0, originalCardCount - visibleCount);
+            currentIndex = Math.max(0, Math.min(currentIndex + (direction * visibleCount), maxIndex));
+            render();
+        };
+
+        previousButton?.addEventListener("click", () => moveBy(-1));
+        nextButton?.addEventListener("click", () => moveBy(1));
+
+        let visibleCountOnResize = getVisibleCount();
+        window.addEventListener("resize", () => {
+            const nextVisibleCount = getVisibleCount();
+            if (isLooping && nextVisibleCount !== visibleCountOnResize) {
+                visibleCountOnResize = nextVisibleCount;
+                currentIndex = 0;
+                removeClones();
+                addLoopClones();
+            }
+            render();
+        });
+
+        if (autoplayDelay > 0) {
+            setInterval(() => {
+                const visibleCount = getVisibleCount();
+                const maxIndex = isLooping
+                    ? originalCardCount
+                    : Math.max(0, originalCardCount - visibleCount);
+                
+                if (currentIndex >= maxIndex) {
+                    track.style.transition = "none";
+                    currentIndex = 0;
+                    track.style.transform = "translateX(0)";
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            track.style.transition = "transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
+                        });
+                    });
+                } else {
+                    currentIndex += visibleCount;
+                    render();
+                }
+            }, autoplayDelay);
+        }
+    }
+
+    document.querySelectorAll("[data-slider='services']").forEach(slider => setupSlider(slider, "services", 4200));
+    document.querySelectorAll("[data-slider='portfolio']").forEach(slider => setupSlider(slider, "portfolio", 0));
+    document.querySelectorAll("[data-slider='testimonials']").forEach(slider => setupSlider(slider, "testimonials", 3000));
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") closeDrawer();
+    });
+});
+</script>
+
+</body>
+</html>

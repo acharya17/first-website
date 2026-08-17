@@ -1,0 +1,5079 @@
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+:root {
+
+    --content-width: 1200px;
+
+    --page-padding: 24px;
+
+    --section-spacing: 24px;
+
+    --radius-lg: 24px;
+
+    --primary: #252525;
+
+    --accent: #fd853a;
+
+    --white: #ffffff;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    width: 100%;
+
+    padding: 20px 0;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    width: min(
+        var(--content-width),
+        calc(100% - (var(--page-padding) * 2))
+    );
+
+    min-height: 66px;
+
+    margin: 0 auto;
+
+    padding: 10px 15px;
+
+    background: var(--primary);
+
+    border-radius: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    position: relative;
+
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   LEFT NAVIGATION
+========================================================= */
+
+.nav-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   RIGHT NAVIGATION
+========================================================= */
+
+.nav-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   NAVIGATION LINKS
+========================================================= */
+
+.nav-left a,
+.nav-right a {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 10px 20px;
+
+    color: var(--white);
+
+    text-decoration: none;
+
+    border-radius: 50px;
+
+    font-size: 14px;
+
+    font-weight: 400;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* =========================================================
+   ACTIVE NAVIGATION
+========================================================= */
+
+.nav-left a.active {
+
+    background: var(--accent);
+
+    color: var(--white);
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.nav-left a:not(.active):hover,
+.nav-right a:hover {
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--white);
+
+    text-decoration: none;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.menu-btn {
+
+    display: none;
+
+    width: 42px;
+
+    height: 42px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+/* =========================================================
+   HAMBURGER LINES
+========================================================= */
+
+.menu-btn span {
+
+    display: block;
+
+    width: 22px;
+
+    height: 2px;
+
+    background: var(--white);
+
+    border-radius: 5px;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+/* =========================================================
+   MOBILE DRAWER
+========================================================= */
+
+.mobile-drawer {
+
+    position: fixed;
+
+    top: 0;
+
+    right: -100%;
+
+    width: min(320px, 85vw);
+
+    height: 100vh;
+
+    padding: 24px;
+
+    background: var(--primary);
+
+    z-index: 2000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    transition: right 0.3s ease;
+
+    box-shadow:
+        -10px 0 35px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   DRAWER OPEN
+========================================================= */
+
+.mobile-drawer.active {
+
+    right: 0;
+}
+
+
+/* =========================================================
+   DRAWER HEADER
+========================================================= */
+
+.drawer-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-bottom: 25px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================================
+   DRAWER TITLE
+========================================================= */
+
+.drawer-title {
+
+    color: var(--white);
+
+    font-size: 20px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.drawer-close {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--white);
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    border-radius: 50%;
+}
+
+.drawer-close:hover {
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   DRAWER LINKS
+========================================================= */
+
+.drawer-links {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    padding-top: 25px;
+}
+
+
+/* =========================================================
+   DRAWER LINK
+========================================================= */
+
+.drawer-links a {
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 48px;
+
+    padding: 12px 15px;
+
+    color: var(--white);
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    border-radius: 12px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* =========================================================
+   DRAWER HOVER / ACTIVE
+========================================================= */
+
+.drawer-links a:hover {
+
+    background: var(--accent);
+
+    color: var(--white);
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.drawer-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    z-index: 1500;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+
+/* =========================================================
+   OVERLAY ACTIVE
+========================================================= */
+
+.drawer-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    :root {
+        --page-padding: 20px;
+    }
+
+    .navbar {
+
+        min-height: 62px;
+
+        padding: 9px 14px;
+    }
+
+    .nav-left a,
+    .nav-right a {
+
+        padding: 9px 15px;
+
+        font-size: 13px;
+    }
+
+    .logo {
+
+        font-size: 22px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    :root {
+        --page-padding: 12px;
+    }
+
+
+    /* Header */
+
+    .header {
+
+        padding: 12px 0;
+    }
+
+
+    /* Navbar */
+
+    .navbar {
+
+        width: calc(100% - 24px);
+
+        height: 60px;
+
+        min-height: 60px;
+
+        padding: 0 14px;
+
+        border-radius: 50px;
+    }
+
+
+    /* Hide desktop navigation */
+
+    .nav-left,
+    .nav-right {
+
+        display: none;
+    }
+
+
+    /* Logo */
+
+    .logo {
+
+        font-size: 22px;
+    }
+
+
+    /* Show hamburger */
+
+    .menu-btn {
+
+        display: flex;
+    }
+
+
+    /* Drawer */
+
+    .mobile-drawer {
+
+        width: min(320px, 85vw);
+
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   TABLET / MOBILE NAVIGATION RANGE
+========================================================= */
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .hero {
+        padding-top: 28px;
+    }
+
+    .hero-container {
+        width: calc(100% - 40px);
+        min-height: 600px;
+    }
+
+    .hero-heading h1,
+    .hero-heading h2 {
+        font-size: 46px;
+        letter-spacing: -1.5px;
+    }
+
+    .hero-person {
+        width: 100%;
+        height: 500px;
+        bottom: 92px;
+    }
+
+    .hero-circle {
+        width: 600px;
+        height: 600px;
+        bottom: -220px;
+    }
+
+    .hero-person img {
+        width: 310px;
+    }
+
+    .hero-caption,
+    .hero-experience {
+        top: auto;
+        bottom: 16px;
+        width: 50%;
+        height: 86px;
+        margin: 0;
+        padding: 10px 14px;
+        box-sizing: border-box;
+        background: #f5f5f5;
+        border: 1px solid #e6e6e6;
+        z-index: 9;
+    }
+
+    .hero-caption {
+        left: 0;
+        border-radius: 16px 0 0 16px;
+    }
+
+    .hero-experience {
+        right: 0;
+        border-radius: 0 16px 16px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .quote-mark { font-size: 32px; line-height: 18px; }
+    .hero-caption p { margin-top: 5px; font-size: 10px; line-height: 1.35; }
+    .stars { font-size: 16px; }
+    .hero-experience strong { margin-top: 4px; font-size: 17px; }
+
+    .hero-buttons {
+        bottom: 120px;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .navbar {
+
+        width: calc(100% - 20px);
+
+        height: 56px;
+
+        min-height: 56px;
+
+        padding: 0 12px;
+    }
+
+    .logo {
+
+        font-size: 20px;
+    }
+
+    .menu-btn {
+
+        width: 38px;
+
+        height: 38px;
+    }
+
+    .menu-btn span {
+
+        width: 20px;
+    }
+}
+
+/* =========================
+   HERO
+========================= */
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    padding: 40px 0 0;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.hero-container {
+    width: min(
+        var(--content-width),
+        calc(100% - (var(--page-padding) * 2))
+    );
+
+    min-height: 600px;
+
+    margin: auto;
+
+    position: relative;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   HELLO CHIP
+========================================================= */
+
+.hero-greeting {
+    display: inline-block;
+
+    padding: 7px 14px;
+
+    border: 1px solid #222222;
+    border-radius: 50px;
+
+    background: #ffffff;
+
+    color: #181818;
+
+    font-size: 12px;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   HEADING
+   Heading stays BEHIND the person
+========================================================= */
+
+.hero-heading {
+    position: relative;
+
+    margin-top: 8px;
+
+    z-index: 2;
+}
+
+.hero-heading h1,
+.hero-heading h2 {
+    margin: 0;
+
+    color: #181818;
+
+    font-weight: 500;
+
+    line-height: 0.95;
+
+    letter-spacing: -2px;
+}
+
+.hero-heading h1 {
+    font-size: 58px;
+}
+
+.hero-heading h1 span {
+    color: #fd853a;
+}
+
+.hero-heading h2 {
+    font-size: 58px;
+}
+
+
+/* =========================================================
+   LEFT CAPTION
+========================================================= */
+
+.hero-caption {
+    position: absolute;
+
+    left: 0;
+    top: 270px;
+
+    width: 280px;
+
+    text-align: left;
+
+    z-index: 8;
+}
+
+.quote-mark {
+    margin: 0;
+
+    color: #24344d;
+
+    font-size: 60px;
+
+    font-weight: 700;
+
+    line-height: 30px;
+}
+
+.hero-caption p {
+    margin: 8px 0 0;
+
+    color: #181818;
+
+    font-size: 20px;
+
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.hero-experience {
+    position: absolute;
+
+    right: 0;
+    top: 290px;
+
+    width: 180px;
+
+    text-align: center;
+
+    z-index: 8;
+}
+
+.stars {
+    color: #fd853a;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    letter-spacing: 1px;
+}
+
+.hero-experience strong {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #181818;
+
+    font-size: 20px;
+
+    font-weight: 600;
+}
+
+.hero-experience span {
+    display: block;
+
+    color: #676767;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   PERSON
+========================================================= */
+
+.hero-person {
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 750px;
+    height: 750px;
+
+    transform: translateX(-50%);
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   ORANGE CIRCLE
+========================================================= */
+
+.hero-circle {
+    position: absolute;
+
+    left: 50%;
+    bottom: -210px;
+
+    width: 650px;
+    height: 650px;
+
+    transform: translateX(-50%);
+
+    background: #ffb06d;
+
+    border-radius: 50%;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   PERSON IMAGE
+========================================================= */
+
+.hero-person img {
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 330px;
+    height: auto;
+
+    transform: translateX(-50%);
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.hero-buttons {
+    position: absolute;
+
+    left: 50%;
+    bottom: 25px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 4px;
+
+    background: rgba(100, 100, 100, 0.45);
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    border-radius: 50px;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    z-index: 10;
+}
+
+.hero-buttons a {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 38px;
+
+    padding: 9px 18px;
+
+    border-radius: 50px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+}
+
+.portfolio-btn {
+    background: #fd853a;
+
+    color: #ffffff;
+}
+
+.hire-btn {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .hero-container {
+        min-height: 580px;
+    }
+
+    .hero-heading h1,
+    .hero-heading h2 {
+        font-size: 50px;
+    }
+
+    .hero-person {
+        width: 650px;
+        height: 650px;
+    }
+
+    .hero-circle {
+        width: 570px;
+        height: 570px;
+
+        bottom: -190px;
+    }
+
+    .hero-person img {
+        width: 300px;
+    }
+
+    .hero-caption {
+        left: 15px;
+
+        width: 220px;
+
+        top: 270px;
+    }
+
+    .hero-caption p {
+        font-size: 16px;
+    }
+
+    .hero-experience {
+        right: 15px;
+
+        top: 290px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .hero {
+        padding: 25px 0 0;
+    }
+
+    .hero-container {
+        width: calc(100% - 24px);
+
+        min-height: 680px;
+
+        padding: 0;
+    }
+
+
+    /* -----------------------------------------
+       HELLO
+    ----------------------------------------- */
+
+    .hero-greeting {
+        padding: 7px 14px;
+
+        font-size: 11px;
+    }
+
+
+    /* -----------------------------------------
+       HEADING
+    ----------------------------------------- */
+
+    .hero-heading {
+        margin-top: 10px;
+
+        z-index: 2;
+    }
+
+    .hero-heading h1,
+    .hero-heading h2 {
+        letter-spacing: -1.5px;
+
+        line-height: 0.95;
+    }
+
+    .hero-heading h1 {
+        font-size: 45px;
+    }
+
+    .hero-heading h2 {
+        font-size: 43px;
+    }
+
+
+    /* -----------------------------------------
+       PERSON AREA
+    ----------------------------------------- */
+
+    .hero-person {
+        width: 100%;
+
+        height: 430px;
+
+        left: 50%;
+
+        bottom: 105px;
+
+        z-index: 5;
+    }
+
+
+    /* -----------------------------------------
+       ORANGE CIRCLE
+    ----------------------------------------- */
+
+    .hero-circle {
+        left: 50%;
+
+        bottom: -185px;
+
+        width: 500px;
+        height: 500px;
+
+        z-index: 1;
+    }
+
+
+    /* -----------------------------------------
+       PERSON IMAGE
+    ----------------------------------------- */
+
+    .hero-person img {
+        left: 50%;
+
+        bottom: 0;
+
+        width: 310px;
+
+        z-index: 3;
+    }
+
+
+    /* -----------------------------------------
+       MOBILE INFO BOX
+    ----------------------------------------- */
+
+    .hero-caption,
+    .hero-experience {
+
+        position: absolute;
+
+        top: auto;
+
+        bottom: 18px;
+
+        width: 50%;
+
+        height: 95px;
+
+        margin: 0;
+
+        padding: 12px 14px;
+
+        background: #f5f5f5;
+
+        border: 1px solid #e6e6e6;
+
+        z-index: 9;
+    }
+
+
+    /* Left side */
+
+    .hero-caption {
+
+        left: 0;
+
+        border-radius: 16px 0 0 16px;
+
+        text-align: left;
+    }
+
+
+    /* Right side */
+
+    .hero-experience {
+
+        right: 0;
+
+        border-radius: 0 16px 16px 0;
+
+        text-align: center;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+
+    /* -----------------------------------------
+       QUOTE
+    ----------------------------------------- */
+
+    .quote-mark {
+
+        font-size: 32px;
+
+        line-height: 18px;
+
+        margin: 0;
+    }
+
+
+    /* -----------------------------------------
+       CAPTION TEXT
+    ----------------------------------------- */
+
+    .hero-caption p {
+
+        margin: 5px 0 0;
+
+        font-size: 10px;
+
+        line-height: 1.35;
+
+        max-width: 150px;
+    }
+
+
+    /* -----------------------------------------
+       STARS
+    ----------------------------------------- */
+
+    .stars {
+
+        font-size: 16px;
+
+        letter-spacing: 0;
+
+        line-height: 1;
+    }
+
+
+    /* -----------------------------------------
+       EXPERIENCE TEXT
+    ----------------------------------------- */
+
+    .hero-experience strong {
+
+        margin-top: 5px;
+
+        font-size: 17px;
+    }
+
+    .hero-experience span {
+
+        margin-top: 2px;
+
+        font-size: 9px;
+    }
+
+
+    /* -----------------------------------------
+       BUTTONS
+    ----------------------------------------- */
+
+    .hero-buttons {
+
+        bottom: 135px;
+
+        padding: 4px;
+
+        z-index: 10;
+    }
+
+    .hero-buttons a {
+
+        min-height: 38px;
+
+        padding: 8px 16px;
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .hero-container {
+
+        min-height: 650px;
+    }
+
+
+    /* Heading */
+
+    .hero-heading h1 {
+
+        font-size: 39px;
+    }
+
+    .hero-heading h2 {
+
+        font-size: 37px;
+    }
+
+
+    /* Person */
+
+    .hero-person {
+
+        height: 400px;
+
+        bottom: 100px;
+    }
+
+    .hero-person img {
+
+        width: 285px;
+    }
+
+
+    /* Circle */
+
+    .hero-circle {
+
+        width: 450px;
+        height: 450px;
+
+        bottom: -165px;
+    }
+
+
+    /* Info */
+
+    .hero-caption,
+    .hero-experience {
+
+        height: 88px;
+
+        padding: 10px;
+    }
+
+    .hero-caption p {
+
+        font-size: 9px;
+    }
+
+    .hero-experience strong {
+
+        font-size: 15px;
+    }
+
+
+    /* Buttons */
+
+    .hero-buttons {
+
+        bottom: 125px;
+    }
+
+    .hero-buttons a {
+
+        padding: 7px 13px;
+
+        font-size: 10px;
+    }
+}
+/* =========================================================
+   SERVICES SECTION
+========================================================= */
+
+.services {
+    width: 100%;
+    min-height: 520px;
+    padding: 54px 0 40px;
+
+    background:
+        linear-gradient(
+            rgba(10, 10, 10, 0.45),
+            rgba(10, 10, 10, 0.45)
+        ),
+        url("assets/images/ui-ux.png");
+
+    background-size: cover;
+    background-position: center;
+
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.services-container {
+    width: min(
+        var(--content-width),
+        calc(100% - (var(--page-padding) * 2))
+    );
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.services-header h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.services-header h2 span {
+    color: #ff8138;
+}
+
+.services-header p {
+    width: 360px;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SLIDER
+========================================================= */
+
+.services-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.services-slider .slider-control {
+    position: absolute;
+    top: 50%;
+    z-index: 30;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    background: #172b45;
+    color: #ffffff;
+    font-size: 0;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.services-slider .slider-prev { left: 12px; }
+.services-slider .slider-next { right: 12px; }
+
+.services-slider .slider-prev::before,
+.services-slider .slider-next::before {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.services-slider .slider-prev::before { content: "\2190"; }
+.services-slider .slider-next::before { content: "\2192"; }
+
+.services-slider .slider-control:hover {
+    background: #ff8138;
+    transform: translateY(-50%) scale(1.06);
+}
+
+
+/* =========================================================
+   SLIDER VIEWPORT
+========================================================= */
+
+.services-viewport {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CARD TRACK
+========================================================= */
+
+.services-cards {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 14px;
+    width: 100%;
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.service-card {
+    position: relative;
+    flex: 0 0 calc((100% - 28px) / 3);
+    width: calc((100% - 28px) / 3);
+    min-width: 0;
+    height: 395px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 22px;
+
+    background: rgba(20, 20, 20, 0.18);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+@media (hover: hover) {
+
+    .service-card:hover {
+        transform: translateY(-4px);
+
+        border-color:
+            rgba(255, 255, 255, 0.9);
+    }
+
+}
+
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.service-card h3 {
+    position: relative;
+    z-index: 10;
+
+    min-height: 58px;
+
+    margin: 0;
+    padding: 18px 20px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.2;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+.service-preview {
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 100%;
+    height: 275px;
+
+    transform: translateX(-50%);
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   IMAGE LAYERS
+========================================================= */
+
+.preview-layer {
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 24px 24px 0 0;
+}
+
+
+/* Back layer */
+
+.layer-1 {
+    top: 0;
+
+    width: 78%;
+    height: 220px;
+
+    background: rgba(180, 180, 180, 0.75);
+
+    z-index: 1;
+}
+
+
+/* Front layer */
+
+.layer-2 {
+    top: 15px;
+
+    width: 90%;
+    height: 215px;
+
+    background: #eeeeee;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   MAIN IMAGE
+========================================================= */
+
+.service-preview img {
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 100%;
+    height: 240px;
+
+    transform: translateX(-50%);
+
+    object-fit: cover;
+
+    border-radius: 24px 24px 0 0;
+
+    z-index: 4;
+}
+
+
+/* =========================================================
+   CARD ARROW
+========================================================= */
+
+.service-arrow {
+    position: absolute;
+
+    right: 8px;
+    bottom: 8px;
+
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #172b45;
+    color: #ffffff;
+
+    border-radius: 50%;
+
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1;
+
+    text-decoration: none;
+
+    z-index: 20;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* Arrow hover */
+
+@media (hover: hover) {
+
+    .service-arrow:hover {
+        background: #ff8138;
+
+        transform: scale(1.06);
+    }
+
+}
+
+
+/* =========================================================
+   DOTS
+========================================================= */
+
+.service-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 18px;
+}
+
+.service-dots button {
+    width: 7px;
+    height: 7px;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    cursor: pointer;
+
+    transition:
+        width 0.3s ease,
+        background 0.3s ease;
+}
+
+.service-dots button.active {
+    width: 26px;
+
+    background: #ff8138;
+
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .services {
+        padding: 40px 0 30px;
+    }
+
+    .services-header h2 {
+        font-size: 25px;
+    }
+
+    .services-header p {
+        width: 300px;
+    }
+
+    .service-card {
+        flex-basis:
+            calc((100% - 14px) / 2);
+
+        width:
+            calc((100% - 14px) / 2);
+
+        height: 360px;
+    }
+
+    .service-preview {
+        height: 250px;
+    }
+
+    .service-preview img {
+        height: 220px;
+    }
+
+    .service-arrow {
+        width: 62px;
+        height: 62px;
+
+        font-size: 32px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .services {
+        min-height: auto;
+
+        padding: 35px 0 30px;
+
+        border-radius: 18px;
+    }
+
+    .services-container {
+        width: calc(100% - 24px);
+    }
+
+    .services-slider .slider-control {
+        width: 38px;
+        height: 38px;
+    }
+
+    .services-slider .slider-prev::before,
+    .services-slider .slider-next::before { font-size: 21px; }
+
+    .services-slider .slider-prev { left: 8px; }
+    .services-slider .slider-next { right: 8px; }
+
+
+    /* Header */
+
+    .services-header {
+        flex-direction: column;
+
+        gap: 12px;
+
+        margin-bottom: 25px;
+    }
+
+    .services-header h2 {
+        font-size: 25px;
+    }
+
+    .services-header p {
+        width: 100%;
+
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+
+    /* One card per page */
+
+    .service-card {
+        flex-basis: 100%;
+        width: 100%;
+
+        height: 390px;
+    }
+
+
+    /* Preview */
+
+    .service-preview {
+        height: 285px;
+    }
+
+    .layer-1 {
+        width: 78%;
+        height: 225px;
+    }
+
+    .layer-2 {
+        width: 90%;
+        height: 230px;
+    }
+
+    .service-preview img {
+        width: 94%;
+        height: 255px;
+    }
+
+
+    /* Arrow */
+
+    .service-arrow {
+        right: 8px;
+        bottom: 8px;
+
+        width: 66px;
+        height: 66px;
+
+        font-size: 32px;
+    }
+
+
+    /* Dots */
+
+    .service-dots {
+        margin-top: 18px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .services {
+        padding-top: 30px;
+    }
+
+    .services-header h2 {
+        font-size: 23px;
+    }
+
+    .service-card {
+        height: 365px;
+    }
+
+    .service-preview {
+        height: 260px;
+    }
+
+    .layer-1 {
+        height: 205px;
+    }
+
+    .layer-2 {
+        height: 215px;
+    }
+
+    .service-preview img {
+        width: 94%;
+        height: 235px;
+    }
+
+    .service-arrow {
+        width: 60px;
+        height: 60px;
+
+        font-size: 29px;
+    }
+}
+/* =========================================================
+   EXPERIENCE SECTION
+========================================================= */
+
+.experience {
+    width: 100%;
+
+    padding: 70px 0 80px;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.experience-container {
+    width: min(
+        var(--content-width),
+        calc(100% - (var(--page-padding) * 2))
+    );
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.experience-title {
+    margin: 0 0 50px;
+
+    text-align: center;
+
+    color: #344054;
+
+    font-size: 30px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+.experience-title span {
+    color: #ff8138;
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.experience-timeline {
+    width: 100%;
+}
+
+
+/* =========================================================
+   EXPERIENCE ROW
+========================================================= */
+
+.experience-item {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        80px
+        minmax(0, 1fr);
+
+    align-items: start;
+
+    min-height: 78px;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.experience-left {
+    padding-right: 35px;
+
+    text-align: left;
+}
+
+.experience-left h3 {
+    margin: 0;
+
+    color: #344054;
+
+    font-size: 19px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+.experience-date {
+    margin: 5px 0 0;
+
+    color: #98a2b3;
+
+    font-size: 14px;
+
+    font-weight: 400;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   CENTER TIMELINE
+========================================================= */
+
+.experience-line {
+    position: relative;
+
+    width: 80px;
+
+    height: 78px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: center;
+}
+
+
+/* =========================================================
+   DOTTED VERTICAL LINE
+========================================================= */
+
+.experience-item:not(:last-child)
+.experience-line::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 22px;
+
+    bottom: -22px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-left: 2px dotted #344054;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   TIMELINE DOT
+========================================================= */
+
+.experience-dot {
+    position: relative;
+
+    width: 20px;
+
+    height: 20px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    z-index: 5;
+
+    box-sizing: border-box;
+}
+
+
+/* Outer ring */
+
+.experience-dot::before {
+    content: "";
+
+    position: absolute;
+
+    top: -4px;
+
+    left: -4px;
+
+    width: 28px;
+
+    height: 28px;
+
+    border: 1px solid #344054;
+
+    border-radius: 50%;
+
+    box-sizing: border-box;
+}
+
+
+/* Orange */
+
+.experience-dot.orange {
+    background: #ff8138;
+}
+
+
+/* Dark */
+
+.experience-dot.dark {
+    background: #172b45;
+}
+
+
+/* =========================================================
+   RIGHT CONTENT
+========================================================= */
+
+.experience-right {
+    padding-left: 35px;
+
+    text-align: left;
+}
+
+.experience-right h3 {
+    margin: 0;
+
+    color: #344054;
+
+    font-size: 19px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+.experience-right p {
+    width: 100%;
+
+    max-width: 400px;
+
+    margin: 5px 0 0;
+
+    color: #98a2b3;
+
+    font-size: 14px;
+
+    font-weight: 400;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   ROW SPACING
+========================================================= */
+
+.experience-item + .experience-item {
+    margin-top: 18px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .experience-container {
+        width: 92%;
+    }
+
+    .experience-item {
+        grid-template-columns:
+            minmax(0, 1fr)
+            60px
+            minmax(0, 1fr);
+    }
+
+    .experience-line {
+        width: 60px;
+    }
+
+    .experience-left {
+        padding-right: 20px;
+    }
+
+    .experience-right {
+        padding-left: 20px;
+    }
+
+    .experience-left h3,
+    .experience-right h3 {
+        font-size: 17px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   No dots
+   No vertical line
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .experience {
+        padding: 50px 0 60px;
+    }
+
+
+    /* -----------------------------------------
+       CONTAINER
+    ----------------------------------------- */
+
+    .experience-container {
+        width: calc(100% - 32px);
+    }
+
+
+    /* -----------------------------------------
+       TITLE
+    ----------------------------------------- */
+
+    .experience-title {
+        margin-bottom: 35px;
+
+        font-size: 26px;
+
+        line-height: 1.2;
+    }
+
+
+    /* -----------------------------------------
+       EXPERIENCE ITEM
+    ----------------------------------------- */
+
+    .experience-item {
+
+        display: flex;
+
+        flex-direction: column;
+
+        width: 100%;
+
+        min-height: auto;
+
+        margin: 0;
+    }
+
+
+    /* -----------------------------------------
+       LEFT CONTENT
+       Company + Date
+    ----------------------------------------- */
+
+    .experience-left {
+
+        width: 100%;
+
+        padding: 0;
+
+        text-align: left;
+
+        margin: 0 0 8px;
+    }
+
+    .experience-left h3 {
+
+        font-size: 18px;
+
+        line-height: 1.3;
+    }
+
+    .experience-date {
+
+        margin-top: 4px;
+
+        font-size: 13px;
+    }
+
+
+    /* -----------------------------------------
+       REMOVE TIMELINE
+    ----------------------------------------- */
+
+    .experience-line {
+
+        display: none;
+    }
+
+
+    /* -----------------------------------------
+       RIGHT CONTENT
+       Role + Description
+    ----------------------------------------- */
+
+    .experience-right {
+
+        width: 100%;
+
+        padding: 0;
+
+        margin: 0;
+
+        text-align: left;
+    }
+
+    .experience-right h3 {
+
+        font-size: 17px;
+
+        line-height: 1.3;
+    }
+
+    .experience-right p {
+
+        width: 100%;
+
+        max-width: none;
+
+        margin-top: 5px;
+
+        font-size: 13px;
+
+        line-height: 1.5;
+    }
+
+
+    /* -----------------------------------------
+       GAP BETWEEN EXPERIENCES
+    ----------------------------------------- */
+
+    .experience-item + .experience-item {
+
+        margin-top: 28px;
+
+        padding-top: 24px;
+
+        border-top: 1px solid #eeeeee;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .experience {
+
+        padding: 40px 0 50px;
+    }
+
+    .experience-container {
+
+        width: calc(100% - 28px);
+    }
+
+    .experience-title {
+
+        font-size: 23px;
+
+        margin-bottom: 30px;
+    }
+
+    .experience-left h3 {
+
+        font-size: 17px;
+    }
+
+    .experience-right h3 {
+
+        font-size: 16px;
+    }
+
+    .experience-date {
+
+        font-size: 12px;
+    }
+
+    .experience-right p {
+
+        font-size: 12px;
+
+        line-height: 1.45;
+    }
+
+    .experience-item + .experience-item {
+
+        margin-top: 24px;
+
+        padding-top: 20px;
+    }
+}
+/* ========================================
+   WHY HIRE ME SECTION
+======================================== */
+
+.hire-section {
+    width: 100%;
+
+    padding: 10px 0;
+
+    background: #ffffff;
+}
+
+
+/* ========================================
+   MAIN CONTAINER
+======================================== */
+
+.hire-container {
+    width: min(var(--content-width), calc(100% - (var(--page-padding) * 2)));
+
+    min-height: 570px;
+
+    margin: 0 auto;
+
+    padding: 55px 65px;
+
+    display: grid;
+
+    grid-template-columns: 42% 58%;
+
+    align-items: center;
+
+    background: #f2f4f7;
+
+    border-radius: 32px;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   LEFT IMAGE AREA
+======================================== */
+
+.hire-image-area {
+    position: relative;
+
+    height: 480px;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+}
+
+
+/* ========================================
+   ORANGE BACKGROUND
+======================================== */
+
+.hire-image-bg {
+    position: absolute;
+
+    left: 50%;
+    bottom: 15px;
+
+    width: 290px;
+    height: 335px;
+
+    transform: translateX(-50%);
+
+    background: #ffb16f;
+
+    border-radius:
+        110px 110px 75px 75px;
+
+    z-index: 1;
+}
+
+
+/* ========================================
+   PERSON IMAGE
+======================================== */
+
+.hire-image {
+    position: relative;
+
+    width: 420px;
+    max-width: none;
+
+    height: auto;
+
+    align-self: flex-end;
+
+    object-fit: contain;
+
+    z-index: 3;
+}
+
+
+/* ========================================
+   RIGHT CONTENT
+======================================== */
+
+.hire-content {
+    padding-left: 35px;
+}
+
+
+/* ========================================
+   HEADING
+======================================== */
+
+.hire-content h2 {
+    margin: 0 0 28px;
+
+    color: #344054;
+
+    font-size: 44px;
+    font-weight: 600;
+
+    line-height: 1.15;
+}
+
+.hire-content h2 span {
+    color: #ff8138;
+}
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.hire-description {
+    width: 390px;
+
+    margin: 0 0 35px;
+
+    color: #98a2b3;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   STATS
+======================================== */
+
+.hire-stats {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    width: 500px;
+
+    gap: 70px;
+
+    margin-bottom: 35px;
+}
+
+
+/* ========================================
+   STAT
+======================================== */
+
+.hire-stat h3 {
+    margin: 0 0 5px;
+
+    color: #344054;
+
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.hire-stat p {
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 13px;
+}
+
+
+/* ========================================
+   HIRE BUTTON
+======================================== */
+
+.hire-button {
+    width: 165px;
+    height: 78px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #202020;
+
+    border-radius: 22px;
+
+    background: transparent;
+
+    color: #202020;
+
+    font-size: 21px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.3s ease;
+}
+
+
+/* Hover */
+
+.hire-button:hover {
+    background: #ff8138;
+
+    border-color: #ff8138;
+
+    color: #ffffff;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .hire-container {
+        width: min(var(--content-width), calc(100% - (var(--page-padding) * 2)));
+
+        padding: 45px;
+
+        grid-template-columns: 40% 60%;
+    }
+
+    .hire-image-area {
+        height: 400px;
+    }
+
+    .hire-image-bg {
+        width: 230px;
+        height: 290px;
+    }
+
+    .hire-image {
+        width: 340px;
+    }
+
+    .hire-content {
+        padding-left: 20px;
+    }
+
+    .hire-content h2 {
+        font-size: 36px;
+    }
+
+    .hire-description {
+        width: 100%;
+    }
+
+    .hire-stats {
+        width: 100%;
+
+        gap: 30px;
+    }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .hire-container {
+        width: min(var(--content-width), calc(100% - (var(--page-padding) * 2)));
+
+        padding: 40px 25px;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .hire-image-area {
+        height: 350px;
+    }
+
+    .hire-image-bg {
+        width: 230px;
+        height: 270px;
+    }
+
+    .hire-image {
+        width: 330px;
+    }
+
+    .hire-content {
+        padding-left: 0;
+    }
+
+    .hire-content h2 {
+        font-size: 32px;
+    }
+
+    .hire-description {
+        width: 100%;
+    }
+
+    .hire-stats {
+        width: 100%;
+
+        gap: 20px;
+    }
+
+    .hire-button {
+        width: 145px;
+        height: 65px;
+    }
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.footer {
+    width: 100%;
+
+    padding: 0 0 0;
+
+    background: #ffffff;
+}
+
+
+/* ========================================
+   FOOTER CONTAINER
+======================================== */
+
+.footer-container {
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+
+    padding: 38px max(24px, calc((100% - var(--content-width)) / 2 + 24px)) 20px;
+
+    background: #252525;
+
+    border-radius: 0;
+
+    color: #ffffff;
+}
+
+
+/* ========================================
+   FOOTER TOP
+======================================== */
+
+.footer-top {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.footer-top h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 36px;
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+
+/* ========================================
+   HIRE BUTTON
+======================================== */
+
+.footer-hire-btn {
+    min-width: 122px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 20px;
+
+    background: #ff8138;
+
+    color: #ffffff;
+
+    border-radius: 25px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    text-decoration: none;
+}
+
+
+/* ========================================
+   DIVIDER
+======================================== */
+
+.footer-divider {
+    width: 100%;
+
+    height: 1px;
+
+    margin: 35px 0;
+
+    background: #47505b;
+}
+
+
+/* ========================================
+   FOOTER MAIN
+======================================== */
+
+.footer-main {
+    display: grid;
+
+    grid-template-columns:
+        2.4fr
+        0.8fr
+        1fr
+        1.25fr;
+
+    gap: 40px;
+
+    align-items: start;
+}
+
+
+/* ========================================
+   BRAND
+======================================== */
+
+.footer-logo {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 25px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+/* Logo circle */
+
+.footer-logo-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #ff8138;
+
+    color: #ffffff;
+
+    border-radius: 50%;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+.footer-brand p {
+    max-width: 400px;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   SOCIAL ICONS
+======================================== */
+
+.footer-socials {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 18px;
+}
+
+
+.footer-socials a {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    text-decoration: none;
+}
+
+
+/* ========================================
+   FOOTER COLUMNS
+======================================== */
+
+.footer-column {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.footer-column h3,
+.footer-newsletter h3 {
+    margin: 0 0 8px;
+
+    color: #ff8138;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.footer-column a {
+    color: #ffffff;
+
+    font-size: 14   px;
+
+    text-decoration: none;
+}
+
+
+/* ========================================
+   NEWSLETTER
+======================================== */
+
+.footer-newsletter {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.footer-newsletter h3 {
+    margin-bottom: 10px;
+}
+
+
+.newsletter-form {
+    width: 100%;
+    max-width: 185px;
+
+    height: 32px;
+
+    display: flex;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border-radius: 9px;
+}
+
+
+.newsletter-form input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 0 10px;
+
+    border: none;
+    outline: none;
+
+    color: #333333;
+
+    font-size: 9px;
+
+    background: #ffffff;
+}
+
+
+.newsletter-form input::placeholder {
+    color: #333333;
+}
+
+
+.newsletter-form button {
+    width: 32px;
+
+    border: none;
+
+    background: #ff8138;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+/* ========================================
+   FOOTER BOTTOM
+======================================== */
+
+.footer-bottom {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 10px;
+}
+
+
+.footer-bottom div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.footer-bottom a,
+.footer-bottom span {
+    color: #ffffff;
+
+    font-size: 10px;
+
+    text-decoration: none;
+}
+
+
+/* ========================================
+   HOVER
+======================================== */
+
+.footer-column a:hover,
+.footer-bottom a:hover {
+    color: #ff8138;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .footer-container {
+        width: 100%;
+
+        padding: 35px 24px 20px;
+    }
+
+    .footer-main {
+        grid-template-columns:
+            1.5fr 1fr 1fr;
+
+        gap: 30px;
+    }
+
+    .footer-newsletter {
+        grid-column: 1 / -1;
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .footer-container {
+        width: 100%;
+
+        padding: 30px 20px 20px;
+
+        border-radius: 0;
+    }
+
+
+    .footer-top {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+
+    .footer-top h2 {
+        font-size: 28px;
+    }
+
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 30px 20px;
+    }
+
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+
+    .footer-newsletter {
+        grid-column: 1 / -1;
+    }
+
+
+    .footer-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+}
+
+/* ========================================
+   PORTFOLIO SECTION
+======================================== */
+
+.portfolio {
+    width: 100%;
+
+    padding: 70px 0 80px;
+
+    background: #ffffff;
+}
+
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.portfolio-container {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+    
+    overflow: hidden;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.portfolio-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 35px;
+}
+
+
+.portfolio-header h2 {
+    margin: 0;
+
+    color: #344054;
+
+    font-size: 40px;
+    font-weight: 600;
+
+    line-height: 1.45;
+}
+
+.portfolio-header h2 span {
+    color: #ff8138;
+}
+
+
+/* ========================================
+   SEE ALL BUTTON
+======================================== */
+
+.portfolio-see-all {
+    min-width: 102px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 25px;
+
+    background: #ff8138;
+
+    color: #ffffff;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    text-decoration: none;
+}
+
+
+/* ========================================
+   PROJECT CARDS
+======================================== */
+
+.portfolio-slider {
+    width: 100%;
+    overflow: hidden;
+}
+
+.portfolio-projects {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 18px;
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+
+/* ========================================
+   PROJECT CARD
+======================================== */
+
+.portfolio-card {
+    position: relative;
+    flex: 0 0 calc(50% - 9px);
+    height: 330px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #eeeeee;
+}
+
+
+/* ========================================
+   PROJECT IMAGE
+======================================== */
+
+.portfolio-card img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+}
+
+
+/* ========================================
+   IMAGE OVERLAY
+======================================== */
+
+.portfolio-card-overlay {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    padding: 0 18px 10px;
+
+    z-index: 5;
+}
+
+
+.portfolio-card-overlay h3 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 48px;
+    font-weight: 600;
+
+    line-height: 1;
+}
+
+
+/* ========================================
+   CARD ARROW
+======================================== */
+
+.portfolio-card-arrow {
+    position: absolute;
+
+    top: 14px;
+    right: 14px;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    color: #ff8138;
+
+    border: 1px solid #ff8138;
+
+    border-radius: 50%;
+
+    font-size: 25px;
+    line-height: 1;
+    box-sizing: border-box;
+
+    text-decoration: none;
+
+    z-index: 10;
+}
+
+
+/* ========================================
+   SLIDER DOTS
+======================================== */
+
+.portfolio-dots,
+.testimonial-dots,
+.service-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 18px;
+}
+
+.portfolio-dots button,
+.testimonial-dots button,
+.service-dots button {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: width 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.portfolio-dots button.active,
+.testimonial-dots button.active,
+.service-dots button.active {
+    width: 42px;
+    border-radius: 20px;
+    background: #ff8138;
+}
+
+.portfolio-dots button:hover,
+.testimonial-dots button:hover,
+.service-dots button:hover {
+    transform: scale(1.06);
+}
+
+.portfolio-dots {
+    margin: 24px 0 30px;
+}
+
+.portfolio-dots button {
+    background: #cbd5e1;
+}
+
+.portfolio-dots button.active {
+    background: #ff8138;
+}
+
+
+/* ========================================
+   FILTER BUTTONS
+======================================== */
+
+.portfolio-filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 14px;
+    margin-bottom: 38px;
+}
+
+
+.portfolio-filters button {
+    padding: 12px 22px;
+    border: 1px solid transparent;
+    background: #f1f3f6;
+    color: #222222;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+
+.portfolio-filters button.active {
+    background: #fff0e6;
+    color: #ff8138;
+    border-color: rgba(255, 129, 56, 0.35);
+    box-shadow: 0 10px 22px rgba(255, 129, 56, 0.12);
+}
+
+.portfolio-filters button:not(.active):hover {
+    background: #eaf0f5;
+}
+
+
+/* ========================================
+   PROJECT INFORMATION
+======================================== */
+
+.portfolio-info {
+    text-align: center;
+
+    max-width: 800px;
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   PROJECT TITLE
+======================================== */
+
+.portfolio-title {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+.portfolio-title h3 {
+    margin: 0;
+
+    color: #344054;
+
+    font-size: 30px;
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+
+/* ========================================
+   PROJECT INFO ARROW
+======================================== */
+
+.portfolio-info-arrow {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #ff8138;
+
+    color: #ffffff;
+
+    border-radius: 50%;
+
+    font-size: 22px;
+
+    text-decoration: none;
+}
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.portfolio-info p {
+    max-width: 720px;
+
+    margin: 12px auto 0;
+
+    color: #667085;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   HOVER
+======================================== */
+
+.portfolio-see-all:hover {
+    background: #ff7025;
+}
+
+
+.portfolio-card-arrow:hover {
+    background: #ff8138;
+
+    color: #ffffff;
+}
+
+
+.portfolio-info-arrow:hover {
+    transform: scale(1.05);
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .portfolio-header h2 {
+        font-size: 34px;
+    }
+
+    .portfolio-card {
+        height: 280px;
+    }
+
+    .portfolio-card-overlay h3 {
+        font-size: 40px;
+    }
+
+    .portfolio-title h3 {
+        font-size: 25px;
+    }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 650px) {
+
+    .portfolio {
+        padding: 50px 0 60px;
+    }
+
+    .portfolio-header {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    .portfolio-header h2 {
+        font-size: 30px;
+    }
+
+    .portfolio-see-all {
+        margin-top: 0;
+    }
+
+    .portfolio-projects {
+        display: flex;
+    }
+
+    .portfolio-card {
+        flex-basis: 100%;
+        height: 280px;
+    }
+
+    .portfolio-card-arrow {
+        top: 12px;
+        right: 12px;
+    }
+
+    .portfolio-card-overlay h3 {
+        font-size: 38px;
+    }
+
+    .portfolio-filters {
+        justify-content: flex-start;
+    }
+
+    .portfolio-title {
+        align-items: center;
+    }
+
+    .portfolio-title h3 {
+        font-size: 22px;
+    }
+
+    .portfolio-info-arrow {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* ========================================
+   TESTIMONIALS SECTION
+======================================== */
+
+.testimonials {
+    width: 100%;
+
+    min-height: 430px;
+
+    padding: 55px 0 65px;
+
+    background-image:
+        linear-gradient(
+            rgba(10, 10, 10, 0.35),
+            rgba(10, 10, 10, 0.35)
+        ),
+        url("assets/images/testibg.png");
+
+    background-size: cover;
+    background-position: center;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.testimonials-container {
+    width: min(
+        var(--content-width),
+        calc(100% - (var(--page-padding) * 2))
+    );
+
+    margin: 0 auto;
+    
+    overflow: hidden;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.testimonials-header {
+    width: 600px;
+
+    max-width: 90%;
+
+    margin: 0 auto 42px;
+
+    text-align: center;
+}
+
+
+.testimonials-header h2 {
+    margin: 0 0 10px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+
+.testimonials-header h2 span {
+    color: #ff8138;
+}
+
+
+.testimonials-header p {
+    max-width: 470px;
+
+    margin: 0 auto;
+
+    color: #ffffff;
+
+    font-size: 10px;
+
+    line-height: 1.45;
+}
+
+
+/* ========================================
+   TESTIMONIAL SLIDER
+======================================== */
+
+.testimonial-slider {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+    padding: 0;
+}
+
+
+/* ========================================
+   TESTIMONIAL CARD
+======================================== */
+
+.testimonial-card {
+    position: relative;
+    flex: 0 0 calc((100% - 24px) / 3);
+    width: calc((100% - 24px) / 3);
+    height: 132px;
+    flex-shrink: 0;
+    padding: 12px 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.16),
+            rgba(255, 255, 255, 0.07)
+        );
+
+    backdrop-filter: blur(8px);
+
+    -webkit-backdrop-filter: blur(8px);
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   USER
+======================================== */
+
+.testimonial-top {
+    display: flex;
+
+    align-items: center;
+
+    margin-bottom: 6px;
+}
+
+
+.testimonial-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.testimonial-user img {
+    width: 29px;
+    height: 29px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+
+.testimonial-user h3 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+
+.testimonial-user span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #d0d5dd;
+
+    font-size: 8px;
+}
+
+
+/* ========================================
+   RATING
+======================================== */
+
+.testimonial-rating {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-bottom: 7px;
+}
+
+
+.testimonial-rating span {
+    color: #ff8138;
+
+    font-size: 16px;
+
+    letter-spacing: 0;
+}
+
+
+.testimonial-rating strong {
+    color: #ffffff;
+
+    font-size: 10px;
+
+    font-weight: 500;
+}
+
+
+/* ========================================
+   TESTIMONIAL TEXT
+======================================== */
+
+.testimonial-text {
+    width: 92%;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 9px;
+
+    line-height: 1.4;
+}
+
+
+/* ========================================
+   QUOTE
+======================================== */
+
+.testimonial-quote {
+    position: absolute;
+
+    right: 12px;
+    top: 8px;
+
+    color: rgba(255, 255, 255, 0.13);
+
+    font-size: 75px;
+
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .testimonial-card {
+        flex-basis: calc((100% - 12px) / 2);
+        width: calc((100% - 12px) / 2);
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .testimonials {
+        min-height: auto;
+        padding: 45px 0 50px;
+    }
+
+    .testimonials-header {
+        margin-bottom: 30px;
+    }
+
+    .testimonials-header h2 {
+        font-size: 24px;
+    }
+
+    .testimonial-slider {
+        width: 100%;
+        padding: 0;
+        overflow: visible;
+        scrollbar-width: none;
+    }
+
+    .testimonial-slider::-webkit-scrollbar {
+        display: none;
+    }
+
+    .testimonial-card {
+        flex-basis: 100%;
+        width: 100%;
+        max-width: none;
+    }
+
+}
+
+
+/* =========================================================
+   CONTACT CTA
+========================================================= */
+
+.contact-cta {
+    position: relative;
+    width: 100%;
+
+    min-height: 500px;
+    padding: 70px 20px 110px;
+
+    background: #ffffff;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.contact-cta-container {
+    width: min(100%, 1040px);
+
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.contact-cta-title {
+    max-width: 900px;
+
+    margin: 0 auto 28px;
+
+    color: #344054;
+
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 600;
+
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+}
+
+.contact-cta-title span {
+    color: #ff8138;
+}
+
+
+/* =========================================================
+   EMAIL FORM
+========================================================= */
+
+.contact-form {
+    width: 100%;
+    height: 82px;
+
+    margin: 0 auto;
+    padding: 5px 7px 5px 8px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    border: 1px solid #dfe3e8;
+    border-radius: 50px;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   EMAIL ICON
+========================================================= */
+
+.email-icon {
+    width: 64px;
+    height: 64px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0e3;
+    color: #ff8138;
+
+    border-radius: 50%;
+
+    font-size: 24px;
+}
+
+
+/* =========================================================
+   EMAIL INPUT
+========================================================= */
+
+.contact-form input {
+    flex: 1;
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+
+    padding: 0 5px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #222222;
+
+    font-family: inherit;
+    font-size: 18px;
+}
+
+.contact-form input::placeholder {
+    color: #222222;
+    opacity: 1;
+}
+
+
+/* =========================================================
+   SEND BUTTON
+========================================================= */
+
+.contact-form button {
+    width: 145px;
+    height: 68px;
+
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 50px;
+
+    background: #ff8138;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.contact-form button:hover {
+    background: #f8752d;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.contact-features {
+    width: 100%;
+
+    margin-top: 22px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   FEATURE ITEM
+========================================================= */
+
+.contact-feature {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+}
+
+.contact-feature span {
+    flex-shrink: 0;
+
+    color: #29313a;
+
+    font-size: 21px;
+    line-height: 1;
+}
+
+.contact-feature p {
+    margin: 0;
+
+    color: #171717;
+
+    font-size: 15px;
+    line-height: 1.3;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   SKILL TICKER
+========================================================= */
+
+.skill-ticker {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background: #ff6412;
+
+    transform: none;
+    z-index: 5;
+}
+
+
+/* =========================================================
+   WHITE CENTER STRIP
+========================================================= */
+
+.skill-ticker::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 100%;
+    height: 48px;
+
+    transform: translateY(-50%);
+
+    background: #ffffff;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   TICKER CONTENT
+========================================================= */
+
+.ticker-track {
+    position: relative;
+
+    z-index: 2;
+
+    width: max-content;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0;
+
+    padding-left: 0;
+
+    white-space: nowrap;
+
+    animation: ticker-scroll 25s linear infinite;
+}
+
+.ticker-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding-right: 24px;
+}
+
+.ticker-track span {
+    color: #111111;
+
+    font-size: 24px;
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+.ticker-track b {
+    color: #ff8138;
+
+    font-size: 30px;
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   TICKER ANIMATION
+========================================================= */
+
+@keyframes ticker-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .contact-cta {
+        min-height: 570px;
+
+        padding: 60px 20px 100px;
+    }
+
+    .contact-cta-title {
+        max-width: 750px;
+
+        font-size: 46px;
+
+        margin-bottom: 28px;
+    }
+
+    .contact-form {
+        height: 76px;
+    }
+
+    .email-icon {
+        width: 58px;
+        height: 58px;
+
+        font-size: 21px;
+    }
+
+    .contact-form input {
+        font-size: 16px;
+    }
+
+    .contact-form button {
+        width: 125px;
+        height: 62px;
+
+        font-size: 16px;
+    }
+
+    .contact-features {
+        gap: 15px;
+    }
+
+    .contact-feature p {
+        font-size: 13px;
+    }
+
+    .contact-feature span {
+        font-size: 18px;
+    }
+
+    .skill-ticker {
+        height: 72px;
+    }
+
+    .skill-ticker::before {
+        height: 46px;
+    }
+
+    .ticker-track {
+        gap: 0;
+    }
+
+    .ticker-group {
+        gap: 18px;
+        padding-right: 18px;
+    }
+
+    .ticker-track span {
+        font-size: 22px;
+    }
+
+    .ticker-track b {
+        font-size: 28px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .contact-cta {
+        min-height: 480px;
+
+        padding: 45px 16px 0px;
+    }
+
+
+    /* -------------------------
+       HEADING
+    ------------------------- */
+
+    .contact-cta-title {
+        max-width: 350px;
+
+        margin: 0 auto 24px;
+
+        font-size: 34px;
+
+        line-height: 1.15;
+        letter-spacing: -0.7px;
+    }
+
+
+    /* -------------------------
+       FORM
+    ------------------------- */
+
+    .contact-form {
+        width: 100%;
+
+        height: 62px;
+
+        padding: 5px;
+
+        gap: 7px;
+
+        border-radius: 40px;
+    }
+
+    .email-icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 18px;
+    }
+
+    .contact-form input {
+        min-width: 0;
+
+        padding: 0 3px;
+
+        font-size: 13px;
+    }
+
+    .contact-form button {
+        width: 78px;
+        height: 50px;
+
+        font-size: 13px;
+    }
+
+
+    /* -------------------------
+       FEATURES
+    ------------------------- */
+
+    .contact-features {
+        margin-top: 24px;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 14px;
+    }
+
+    .contact-feature {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        gap: 8px;
+
+        padding: 0 8px;
+    }
+
+    .contact-feature span {
+        width: 22px;
+
+        font-size: 18px;
+
+        text-align: center;
+    }
+
+    .contact-feature p {
+        font-size: 13px;
+
+        text-align: left;
+    }
+
+
+    /* -------------------------
+       MOBILE TICKER
+    ------------------------- */
+
+    .skill-ticker {
+        left: 0;
+        bottom: 0;
+
+        width: 100%;
+
+        height: 65px;
+
+        transform: none;
+    }
+
+    .skill-ticker::before {
+        height: 42px;
+    }
+
+    .ticker-track {
+        gap: 0;
+
+        padding-left: 0;
+    }
+
+    .ticker-group {
+        gap: 14px;
+        padding-right: 14px;
+    }
+
+    .ticker-track span {
+        font-size: 18px;
+    }
+
+    .ticker-track b {
+        font-size: 22px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .contact-cta {
+        min-height: 560px;
+
+        padding: 40px 14px 85px;
+    }
+
+    .contact-cta-title {
+        max-width: 320px;
+
+        font-size: 29px;
+
+        margin-bottom: 22px;
+    }
+
+    .contact-form {
+        height: 58px;
+
+        gap: 5px;
+    }
+
+    .email-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 16px;
+    }
+
+    .contact-form input {
+        font-size: 12px;
+    }
+
+    .contact-form button {
+        width: 70px;
+        height: 46px;
+
+        font-size: 12px;
+    }
+
+    .contact-features {
+        margin-top: 22px;
+
+        gap: 12px;
+    }
+
+    .contact-feature {
+        padding: 0 4px;
+    }
+
+    .contact-feature p {
+        font-size: 12px;
+    }
+
+    .skill-ticker {
+        height: 60px;
+    }
+
+    .skill-ticker::before {
+        height: 40px;
+    }
+
+    .ticker-track {
+        gap: 0;
+    }
+
+    .ticker-group {
+        gap: 12px;
+        padding-right: 12px;
+    }
+
+    .ticker-track span {
+        font-size: 17px;
+    }
+
+    .ticker-track b {
+        font-size: 21px;
+    }
+}
+
+/* ========================================
+   BLOG SECTION
+======================================== */
+
+.blog {
+    width: 100%;
+
+    padding: 65px 0 75px;
+
+    background: #ffffff;
+}
+
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.blog-container {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.blog-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+
+.blog-header h2 {
+    margin: 0;
+
+    color: #344054;
+
+    font-size: 30px;
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+
+/* ========================================
+   SEE ALL
+======================================== */
+
+.blog-see-all {
+    min-width: 80px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 5px;
+
+    background: #ff8138;
+
+    color: #ffffff;
+
+    border-radius: 25px;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    text-decoration: none;
+}
+
+
+/* ========================================
+   BLOG GRID
+======================================== */
+
+.blog-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+
+/* ========================================
+   BLOG CARD
+======================================== */
+
+.blog-card {
+    min-width: 0;
+}
+
+
+/* ========================================
+   BLOG IMAGE
+======================================== */
+
+.blog-image {
+    position: relative;
+
+    width: 100%;
+    height: 320px;
+
+    overflow: visible;
+}
+
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+}
+
+
+/* ========================================
+   ARROW
+======================================== */
+
+.blog-arrow {
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #172b45;
+
+    color: #ffffff;
+
+    border-radius: 50%;
+
+    font-size: 32px;
+    font-weight: 300;
+
+    text-decoration: none;
+
+    z-index: 5;
+}
+
+
+/* ========================================
+   CATEGORY
+======================================== */
+
+.blog-category {
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-top: 20px;
+
+    padding: 8px 18px;
+
+    background: #f1f3f6;
+
+    color: #222222;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+}
+
+
+/* ========================================
+   META
+======================================== */
+
+.blog-meta {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 18px;
+}
+
+
+.blog-meta span {
+    position: relative;
+
+    padding-left: 10px;
+
+    color: #344054;
+
+    font-size: 11px;
+}
+
+
+/* Orange dot */
+
+.blog-meta span::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 5px;
+    height: 5px;
+
+    transform: translateY(-50%);
+
+    background: #ff8138;
+
+    border-radius: 50%;
+}
+
+
+/* ========================================
+   BLOG TITLE
+======================================== */
+
+.blog-card h3 {
+    margin: 18px 0 0;
+
+    color: #344054;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    line-height: 1.35;
+}
+
+
+/* ========================================
+   HOVER
+======================================== */
+
+.blog-see-all:hover {
+    background: #ff7025;
+}
+
+
+.blog-arrow:hover {
+    background: #ff8138;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .blog-grid {
+        gap: 12px;
+    }
+
+    .blog-image {
+        height: 210px;
+    }
+
+    .blog-arrow {
+        width: 56px;
+        height: 56px;
+
+        font-size: 28px;
+    }
+
+    .blog-card h3 {
+        font-size: 16px;
+    }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 650px) {
+
+    .blog {
+        padding: 50px 0 60px;
+    }
+
+    .blog-header {
+        align-items: center;
+    }
+
+    .blog-header h2 {
+        font-size: 27px;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+    .blog-image {
+        height: 250px;
+    }
+
+.blog-card h3 {
+        font-size: 18px;
+    }
+
+}
+
+/* Keep the mobile navigation completely off-canvas until it is opened. */
+@media (min-width: 901px) {
+    .mobile-drawer,
+    .drawer-overlay {
+        display: none !important;
+    }
+}
+
+/* Prevent fixed-size decorative elements from widening tablet/mobile pages. */
+@media (max-width: 900px) {
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: clip;
+    }
+
+    body > header,
+    body > section,
+    body > footer {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-container,
+    .services-container,
+    .portfolio-container,
+    .testimonials-container,
+    .contact-cta-container,
+    .blog-container,
+    .footer-container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .mobile-drawer {
+        position: fixed;
+        top: 0;
+        right: 0 !important;
+        bottom: 0;
+        width: min(340px, 86vw);
+        height: 100dvh;
+        right: 0 !important;
+        transform: translateX(100%) !important;
+        transition: transform 0.3s ease;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 1100;
+    }
+
+    .mobile-drawer.active {
+        transform: translateX(0) !important;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+/* Keep service carousel navigation separate from the card artwork. */
+.services-slider {
+    overflow: visible;
+    padding-bottom: 0;
+}
+
+.services-viewport {
+    overflow: hidden;
+}
+
+@media (hover: hover) {
+    .testimonial-card:hover {
+        border-color: rgba(255, 129, 56, 0.85);
+        box-shadow: 0 0 22px rgba(255, 129, 56, 0.48);
+    }
+}
+
+.services-slider .slider-prev {
+    left: calc(50% - 70px);
+}
+
+.services-slider .slider-next {
+    right: calc(50% - 70px);
+}
+
+.services-slider .slider-control:hover {
+    transform: scale(1.06);
+}
+
+.service-dots {
+    display: flex;
+    height: auto;
+    margin-top: 18px;
+}
+
+@media (max-width: 600px) {
+    .services-slider {
+        padding-bottom: 0;
+    }
+
+    .services-slider .slider-prev {
+        left: calc(50% - 64px);
+    }
+
+    .services-slider .slider-next {
+        right: calc(50% - 64px);
+    }
+
+}
