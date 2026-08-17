@@ -1784,6 +1784,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterButtons = document.querySelectorAll(".portfolio-filters button");
     filterButtons.forEach(button => {
         button.addEventListener("click", () => {
+            // Trigger ripple effect
+            button.classList.remove("ripple");
+            void button.offsetWidth; // Trigger reflow to restart animation
+            button.classList.add("ripple");
+            
+            // Remove ripple class after animation completes
+            setTimeout(() => {
+                button.classList.remove("ripple");
+            }, 600);
+            
+            // Toggle active state
             filterButtons.forEach(item => item.classList.toggle("active", item === button));
         });
     });
@@ -1920,6 +1931,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
         previousButton?.addEventListener("click", () => moveBy(-1));
         nextButton?.addEventListener("click", () => moveBy(1));
+
+        // Touch swipe handling for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isDragging = false;
+
+        track.addEventListener("touchstart", (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            isDragging = true;
+            track.style.transition = "none";
+        });
+
+        track.addEventListener("touchmove", (e) => {
+            if (!isDragging) return;
+        });
+
+        track.addEventListener("touchend", (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            const deltaX = touchStartX - touchEndX;
+            const deltaY = touchStartY - touchEndY;
+
+            // Only consider it a horizontal swipe if horizontal movement is greater than vertical
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                track.style.transition = "transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
+                if (deltaX > 0) {
+                    moveBy(1); // Swipe left, move to next
+                } else {
+                    moveBy(-1); // Swipe right, move to previous
+                }
+            } else {
+                track.style.transition = "transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
+                render();
+            }
+        });
 
         let visibleCountOnResize = getVisibleCount();
         window.addEventListener("resize", () => {
